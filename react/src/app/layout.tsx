@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import type { Viewport } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
-import "animate.css";
 import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
 

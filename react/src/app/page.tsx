@@ -1,6 +1,6 @@
+import AnimatedContent from "@/components/AnimatedContent";
 import "@/styles/homePage.css";
 export default async function page() {
-  // 移动端文字
   const welcome = ["W", "e", "l", "c", "o", "m", "e", ","];
   const emoji = ["ദ", "്", "ദ", "ി", "˶", "•", "̀", "֊", "•", "́", ")", "✧"];
   const line2 = [
@@ -18,8 +18,6 @@ export default async function page() {
   ];
   const line3 = ["在", "这", "里", "记", "录", "逛", "街", "、", "旅", "行"];
   const line4 = ["还", "有", "一", "些", "小", "故", "事", "～"];
-
-  // 桌面端文字
   const desktopLine1 = [
     "W",
     "e",
@@ -41,11 +39,10 @@ export default async function page() {
     "博",
     "客",
   ];
-
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-[90vw] lg:w-[80vw] lg:h-[94vh] mx-[5vw] lg:mx-[10vw]">
-        <div className="lg:w-[40vw] h-[17.5vh] mt-[29vh] ml-[5vw] text-2xl font-normal font-sans">
+      <div className="flex flex-col lg:flex-row w-[90vw] lg:w-[80vw] lg:h-[94vh] mx-[5vw] lg:mx-[10vw] font-normal font-sans">
+        <div className="lg:w-[40vw] h-[17.5vh] mt-[29vh] ml-[5vw] text-2xl">
           <div className="lg:hidden flex flex-col">
             <div className="flex items-center">
               <ul className="flex flex-wrap gap-[0.2rem] z-10">
@@ -161,7 +158,7 @@ export default async function page() {
           </div>
         </div>
 
-        <div className="h-6 w-6 absolute m-auto mt-[95vh] top-0 bottom-0 left-0 right-0">
+        <div className="lg:hidden h-6 w-6 absolute m-auto mt-[95vh] top-0 bottom-0 left-0 right-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -176,9 +173,30 @@ export default async function page() {
             />
           </svg>
         </div>
-        <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] bg-[#D6C6E1] p-1 lg:mt-[45vh] lg:ml-[20vw] mt-[54vh] rounded-2xl">
-          test
-        </div>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          reverse={false}
+          config={{ tension: 50, friction: 25 }}
+          delay={1000}
+          initialOpacity={0.0}
+          animateOpacity={true}
+          scale={0.7}
+          threshold={0.1}>
+          <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] bg-[#e8d4f9d6] p-3 ml-[15vw] lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
+            <ul className="flex flex-col w-full h-full gap-3">
+              <li className="w-full h-[20%] text-center pt-2 text-lg">
+                网站访问人数
+                <span className="ml-2 px-1 bg-[#9a73b54e] rounded-md drop-shadow-md">
+                  8888
+                </span>
+              </li>
+              <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
+              <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
+              <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
+            </ul>
+          </div>
+        </AnimatedContent>
       </div>
     </>
   );

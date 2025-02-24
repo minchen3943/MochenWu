@@ -1,0 +1,18 @@
+GET http://localhost:8080/comment/get/all
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-02-21T230401.500.json
+
+###
+
+GET http://localhost:8080/comment/get/all
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-02-21T230359.500.json
+
+###
+

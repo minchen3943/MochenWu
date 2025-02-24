@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-02-21T15:04:01.988+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "path": "/comment/get/all"
+}

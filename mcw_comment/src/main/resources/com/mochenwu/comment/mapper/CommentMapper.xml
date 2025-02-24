@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mochenwu.comment.mapper.CommentMapper">
+
+    <!--
+        基本结果映射，定义了从数据库查询结果到 McwComment 对象的映射关系。
+        通过这个映射，将查询结果自动封装为 McwComment 实例。
+    -->
+    <resultMap id="BaseResultMap" type="com.mochenwu.comment.model.McwComment">
+        <id property="commentId" column="comment_id"/> <!-- 评论ID -->
+        <result property="commentUserName" column="comment_user_name"/> <!-- 用户名 -->
+        <result property="commentUserEmail" column="comment_user_email"/> <!-- 用户邮箱 -->
+        <result property="commentUserIp" column="comment_user_ip"/> <!-- 用户IP地址 -->
+        <result property="commentContent" column="comment_content"/> <!-- 评论内容 -->
+        <result property="commentDate" column="comment_date"/> <!-- 评论时间 -->
+        <result property="commentStatus" column="comment_status"/> <!-- 评论状态 -->
+    </resultMap>
+
+    <!--
+        添加评论操作
+        使用 "useGeneratedKeys" 属性来自动生成评论ID，并将生成的ID赋值给实体对象的 commentId 属性
+    -->
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="commentId"
+            parameterType="com.mochenwu.comment.model.McwComment">
+        INSERT INTO mcw_comment (comment_user_name, comment_user_email, comment_user_ip, comment_content, comment_date,
+                                 comment_status)
+        VALUES (#{commentUserName}, #{commentUserEmail}, #{commentUserIp}, #{commentContent}, #{commentDate},
+                #{commentStatus})
+    </insert>
+
+    <!--
+        更新评论操作
+        仅在对应字段不为 null 且不为空时，才更新相应的字段，避免更新空值字段。
+        使用动态 SQL 构建更新语句。
+    -->
+    <update id="updateCommentById">
+        UPDATE mcw_comment
+        <set>
+            <if test="commentUserName != null and commentUserName != ''">
+                comment_user_name = #{commentUserName}, <!-- 更新用户名 -->
+            </if>
+            <if test="commentUserEmail != null and commentUserEmail != ''">
+                comment_user_email = #{commentUserEmail}, <!-- 更新用户邮箱 -->
+            </if>
+            <if test="commentUserIp !=null and commentUserIp !=''">
+                comment_user_ip = #{commentUserIp}, <!-- 更新用户IP -->
+            </if>
+            <if test="commentContent != null and commentContent !=''">
+                comment_content = #{commentContent}, <!-- 更新评论内容 -->
+            </if>
+            <if test="commentStatus != null and commentStatus != ''">
+                comment_status = #{commentStatus}, <!-- 更新评论状态 -->
+            </if>
+        </set>
+        WHERE comment_id = #{commentId} <!-- 指定更新的评论ID -->
+    </update>
+    <delete id="delCommentById">
+        DELETE FROM mcw_comment WHERE comment_id = #{commentId}
+    </delete>
+
+    <!--
+        获取所有可见的评论
+        该 SQL 查询会返回所有状态为 1（可见）的评论，用于展示在前端页面。
+    -->
+    <select id="getAllVisibleComment" resultMap="BaseResultMap">
+        SELECT *
+        FROM mcw_comment
+        WHERE comment_status = 1 <!-- 只查询状态为可见的评论 -->
+    </select>
+
+    <!--
+        根据评论ID获取指定评论
+        通过评论ID查询单条评论，通常用于查看评论的详细信息。
+    -->
+    <select id="getCommentById" resultType="com.mochenwu.comment.model.McwComment">
+        SELECT *
+        FROM mcw_comment
+        WHERE comment_id = #{commentId} <!-- 根据评论ID查询 -->
+    </select>
+
+</mapper>

@@ -1,9 +1,9 @@
 package com.mochenwu.comment.controller;
 
 
-import com.mochenwu.comment.model.ApiResponse;
 import com.mochenwu.comment.model.McwComment;
 import com.mochenwu.comment.service.CommentService;
+import com.mochenwu.general.model.ApiResponse;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -108,7 +108,7 @@ public class CommentController {
             McwComment comment = commentService.getCommentById(commentId);
             // 如果没有找到评论，返回 404 错误
             if (comment == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "评论id不存在", null));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "评论id:" + commentId + " 不存在", null));
             }
             // 返回成功响应，包含评论对象
             return ResponseEntity.ok(new ApiResponse<>(200, "Id获取评论成功", comment));
@@ -194,7 +194,7 @@ public class CommentController {
             McwComment comment = commentService.getCommentById(commentId);
             // 如果没有找到评论，返回 404 错误
             if (comment == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "评论id不存在", null));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "评论id:" + commentId + " 不存在", null));
             }
             // 删除评论并返回成功响应
             commentService.delCommentById(commentId);

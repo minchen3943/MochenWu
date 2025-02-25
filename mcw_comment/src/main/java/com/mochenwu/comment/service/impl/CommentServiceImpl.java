@@ -37,8 +37,8 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
      * @param commentList 注入的 CommentMapper 实例，负责与数据库进行交互
      */
     @Autowired
-    public CommentServiceImpl(CommentMapper commentList) {
-        this.commentMapper = commentList;
+    public CommentServiceImpl(CommentMapper commentMapper) {
+        this.commentMapper = commentMapper;
     }
 
     /**
@@ -64,7 +64,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
         mcwComment.setCommentStatus(0);
         // 调用 CommentMapper 插入评论数据
         commentMapper.addComment(mcwComment);
-        logger.info("Comment added(commentId:{})", mcwComment.getCommentId());
+        logger.info("Comment added {commentId:{}}", mcwComment.getCommentId());
     }
 
     /**
@@ -80,6 +80,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
         // 通过 try-with-resources 确保 Page 对象被自动关闭
         try (Page<McwComment> ignored = PageHelper.startPage(page, 5)) {
             // 调用 CommentMapper 获取分页后的评论列表
+            logger.info("分页查询成功 {page:{}}", page);
             return commentMapper.getAllVisibleComment();
         } catch (Exception e) {
             // 捕获异常并抛出运行时异常
@@ -101,7 +102,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
             logger.error("query is empty, commentId:{}", commentId);
             return null;
         } else {
-            logger.info("Query Comment(commentId:{})", commentId);
+            logger.info("Query Comment {commentId:{}}", commentId);
             return comment;
         }
     }
@@ -117,7 +118,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     public McwComment updateComment(McwComment mcwComment) {
         int id = mcwComment.getCommentId();
         // 执行更新评论操作
-        logger.info("Comment update(commentId:{}, Updates:{})", id, commentMapper.updateCommentById(mcwComment));
+        logger.info("Comment update {commentId:{}, Updates:{}}", id, commentMapper.updateCommentById(mcwComment));
         // 返回更新后的评论对象
         return getCommentById(id);
     }
@@ -125,6 +126,6 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     @Override
     public void delCommentById(int commentId) {
         commentMapper.delCommentById(commentId);
-        logger.info("Comment del(commentId:{})", commentId);
+        logger.info("Comment del {commentId:{}}", commentId);
     }
 }

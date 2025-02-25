@@ -45,7 +45,10 @@
     <!-- 子模块配置 -->
     <modules>
         <module>mcw_main</module> <!-- 子模块 mcw_main -->
-        <module>mcw_comment</module> <!-- 子模块 mcw_comment -->
+        <module>mcw_comment</module>
+        <module>mcw_data</module>
+        <module>mcw_article</module>
+        <module>mcw_general</module> <!-- 子模块 mcw_comment -->
     </modules>
 
     <!-- 项目属性 -->

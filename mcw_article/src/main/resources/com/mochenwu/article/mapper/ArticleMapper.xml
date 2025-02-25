@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mochenwu.article.mapper.ArticleMapper">
+
+    <insert id="addArticle" useGeneratedKeys="true" keyProperty="articleId"
+            parameterType="com.mochenwu.article.model.McwArticle">
+        INSERT INTO mcw_article (article_title, article_url, article_date, article_visitor_count,
+                                  article_status)
+        VALUES (#{articleTitle}, #{articleUrl}, #{articleDate}, #{articleVisitorCount},
+                #{articleStatus})
+    </insert>
+    <update id="updateArticle">
+        UPDATE mcw_article
+        <set>
+            <if test="articleTitle != null and articleTitle != ''">
+                article_title = #{articleTitle}
+            </if>
+            <if test="articleVisitorCount !=  null and articleVisitorCount != ''">
+                articleVisitorCount = #{articleVisitorCount}
+            </if>
+            <if test="articleStatus != null and articleStatus != ''">
+                article_status = #{articleStatus}
+            </if>
+        </set>
+        WHERE article_id = #{articleId}
+    </update>
+
+    <select id="getAllVisibleArticle" resultType="com.mochenwu.article.model.McwArticle">
+        SELECT * FROM mcw_article WHERE article_status = 1
+    </select>
+
+    <select id="getArticleById" resultType="com.mochenwu.article.model.McwArticle">
+        SELECT * FROM mcw_article WHERE article_id = #{articleId}
+    </select>
+
+    <delete id="delArticleById" >
+        DELETE
+        FROM mcw_article
+        WHERE article_id = #{articleId}
+    </delete>
+</mapper>

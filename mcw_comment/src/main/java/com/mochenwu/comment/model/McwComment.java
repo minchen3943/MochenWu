@@ -25,7 +25,6 @@ public class McwComment {
      */
     @Id
     @TableId(type = IdType.AUTO)  // 使用 MyBatis Plus 的自动生成主键策略
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 自动生成主键值
     @Column(name = "comment_id", nullable = false)  // 映射到表中的 comment_id 列
     private Integer commentId;
 

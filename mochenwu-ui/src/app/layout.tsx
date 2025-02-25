@@ -4,6 +4,7 @@ import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
+import Script from "next/script";
 
 const notoSans = Noto_Sans_SC({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="zh-CN">
+        <Script src="../public/51la.js" />
         <body className={notoSans.className}>
           <div id="root">
             <header>

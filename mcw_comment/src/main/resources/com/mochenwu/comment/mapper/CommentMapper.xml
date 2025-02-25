@@ -57,7 +57,9 @@
         WHERE comment_id = #{commentId} <!-- 指定更新的评论ID -->
     </update>
     <delete id="delCommentById">
-        DELETE FROM mcw_comment WHERE comment_id = #{commentId}
+        DELETE
+        FROM mcw_comment
+        WHERE comment_id = #{commentId}
     </delete>
 
     <!--

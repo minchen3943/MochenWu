@@ -16,11 +16,11 @@ CREATE TABLE `mcw_admin`
 DROP TABLE
     IF
         EXISTS `mcw_articles`;
-CREATE TABLE `mcw_articles`
+CREATE TABLE `mcw_article`
 (
     article_id            INT AUTO_INCREMENT PRIMARY KEY COMMENT '博客id',
     article_title         VARCHAR(80) NOT NULL COMMENT '博客标题',
-    article_path          VARCHAR(50) NOT NULL COMMENT '文章存放路径',
+    article_url          VARCHAR(200) NOT NULL COMMENT '文章路径',
     article_date          DATETIME COMMENT '文章上传时间',
     article_visitor_count INT         NOT NULL COMMENT '文章阅读人数',
     article_status        INT         NOT NULL COMMENT '文章状态(0不显示;1显示;2状态异常)'
@@ -48,8 +48,14 @@ CREATE TABLE `mcw_friend_link`
     link_id      INT AUTO_INCREMENT PRIMARY KEY COMMENT '友链id',
     link_title   VARCHAR(40) NOT NULL COMMENT '友链标题',
     link_url     VARCHAR(40) NOT NULL COMMENT '友链链接',
-    link_img_url VARCHAR(40) NOT NULL COMMENT '友链图片存放路径',
+    link_img_url VARCHAR(200) NOT NULL COMMENT '友链图片路径',
     link_brief   VARCHAR(60) COMMENT '友链简介',
     link_status  INT         NOT NULL COMMENT '友链状态(0不显示;1显示;2状态异常)'
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT = '友链表'
+  DEFAULT CHARSET = utf8mb4 COMMENT = '友链表';
+
+DROP TABLE IF EXISTS `mcw_data`;
+CREATE TABLE `mcw_data`
+(
+    visitor_count INT NOT NULL COMMENT '网站访问人数'
+)

@@ -1,4 +1,4 @@
-package com.mochenwu.comment.model;
+package com.mochenwu.general.model;
 
 /**
  * @author 瞑尘

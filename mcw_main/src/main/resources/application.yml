@@ -14,15 +14,15 @@ spring:
       max-request-size: 50MB
 
 logging:
+  file:
+    path: log
   level:
     org:
       springframework:
-        jdbc: DEBUG
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql: TRACE
+        web:
+          filter:
+            CommonsRequestLoggingFilter: DEBUG
+
 
 mybatis-plus:
   configuration:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
-    <option name="reLastEntityCreationPackage" value="mcw_main/src/main/java/com/mochenwu/main" />
+    <option name="reLastEntityCreationPackage" value="mcw_data/src/main/java/com/mochenwu/data/model" />
     <option name="reverseEngineeringLastDbConnectionId" value="e74c8aba-38d7-45ae-bd1c-8c069c674969" />
   </component>
 </project>

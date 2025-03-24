@@ -10,7 +10,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DataMapper extends BaseMapper<McwData> {
 
-    void addOneVisitorCount(int count);
+    void addOneVisitorCount(int visitorCount);
 
     int selectVisitorCount();
+
+    Integer selectLikeCount();
+
+    void addOneLikeCount(int likeCount);
 }

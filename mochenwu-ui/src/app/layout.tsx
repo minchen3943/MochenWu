@@ -4,7 +4,6 @@ import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
-import Script from "next/script";
 
 const notoSans = Noto_Sans_SC({ subsets: ["latin"] });
 

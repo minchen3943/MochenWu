@@ -9,4 +9,8 @@ import com.mochenwu.data.model.McwData;
 public interface DataService extends IService<McwData> {
     int addVisitorCount();
     int getVisitorCount();
+
+    Integer getLikeCount();
+
+    Integer addLikeCount();
 }

@@ -59,7 +59,8 @@ DROP TABLE IF EXISTS `mcw_data`;
 CREATE TABLE `mcw_data`
 (
     data_id       INT AUTO_INCREMENT PRIMARY KEY COMMENT '数据id',
-    visitor_count INT NOT NULL COMMENT '网站访问人数'
+    visitor_count INT NOT NULL COMMENT '网站访问人数',
+    like_count INT NOT NULL COMMENT '网站喜欢人数'
 );
-INSERT INTO mcw_data (data_id, visitor_count)
-VALUES (1, 0)
+INSERT INTO mcw_data (data_id, visitor_count, like_count)
+VALUES (1, 0, 0)

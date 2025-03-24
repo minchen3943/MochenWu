@@ -23,8 +23,8 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
 
     @Override
     public int addVisitorCount() {
-        int count = dataMapper.selectVisitorCount();
-        dataMapper.addOneVisitorCount(count + 1);
+        int visitorCount = dataMapper.selectVisitorCount();
+        dataMapper.addOneVisitorCount(visitorCount + 1);
         return dataMapper.selectVisitorCount();
     }
 
@@ -32,6 +32,20 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
     public int getVisitorCount() {
         return dataMapper.selectVisitorCount();
     }
+
+    @Override
+    public Integer addLikeCount() {
+        int likeCount = dataMapper.selectLikeCount();
+        dataMapper.addOneLikeCount(likeCount + 1);
+        return dataMapper.selectLikeCount();
+    }
+
+    @Override
+    public Integer getLikeCount() {
+        return dataMapper.selectLikeCount();
+    }
+
+
 
 
 }

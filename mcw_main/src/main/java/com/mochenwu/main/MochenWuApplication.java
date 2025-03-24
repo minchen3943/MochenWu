@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.mochenwu.comment")
 @ComponentScan("com.mochenwu.article")
 @ComponentScan("com.mochenwu.data")
+@ComponentScan("com.mochenwu.main.config")
 @MapperScan({"com.mochenwu.comment.mapper","com.mochenwu.article.mapper", "com.mochenwu.data.mapper"})
 public class MochenWuApplication {
     public static void main(String[] args) {

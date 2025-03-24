@@ -1,11 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import "@/styles/statusBar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function StatusBar() {
   const [visitors, setVisitors] = useState("");
   const [likes, setLikes] = useState("");
   const [likeEdit, setLikeEdit] = useState(true);
+  const [likeColor, setLikeColor] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -51,7 +55,7 @@ export default function StatusBar() {
       }
     }
     fetchData();
-  }, [likes]);
+  }, []);
   const likeAdd = async () => {
     if (likeEdit) {
       try {
@@ -61,6 +65,7 @@ export default function StatusBar() {
         const data = await response.json();
         if (data.code === 200) {
           setLikes(data.data); // 更新点赞数
+          setLikeColor(true);
         } else {
           console.error("点赞失败:", data.message);
         }
@@ -84,23 +89,14 @@ export default function StatusBar() {
         <li className="text-lg place-self-center drop-shadow-xl">
           <button
             type="button"
-            className="flex rounded-md py-1 px-3 bg-[#8c53b59f] lg:hover:bg-[#8c53b558] "
+            className="button flex rounded-md py-1 px-3 bg-[#8c53b59f] lg:hover:bg-[#8c53b558] "
             onClick={likeAdd}>
             喜欢本站
-            <span className="ml-2 my-1 rounded-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-5">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                />
-              </svg>
+            <span className="ml-2 rounded-lg">
+              <FontAwesomeIcon
+                icon={faHeart}
+                style={likeColor ? { color: "#f13b3b" } : {}}
+              />
             </span>
             <span className="ml-2 px-1 bg-[#8c5fbfa0] rounded-md">{likes}</span>
           </button>

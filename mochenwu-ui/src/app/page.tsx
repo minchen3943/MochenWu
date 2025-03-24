@@ -174,7 +174,7 @@ export default async function page() {
           </svg>
         </div>
         <AnimatedContent
-          distance={100}
+          distance={50}
           direction="vertical"
           reverse={false}
           config={{ tension: 50, friction: 25 }}
@@ -191,7 +191,29 @@ export default async function page() {
                   8888
                 </span>
               </li>
-              <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
+              <li className="h-[20%] pt-2 text-lg place-self-center drop-shadow-lg">
+                <button
+                  type="button"
+                  className="flex rounded-md py-1 px-3 bg-[#8c53b59f] hover:bg-[#8c53b558]">
+                  喜欢本站
+                  <span className="ml-2 my-1 rounded-lg ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-5">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                      />
+                    </svg>
+                  </span>
+                  <span className="ml-2 px-1 bg-[#8c5fbfa0] rounded-md">8</span>
+                </button>
+              </li>
               <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
               <li className="w-full h-[20%] text-center pt-2 text-lg"></li>
             </ul>

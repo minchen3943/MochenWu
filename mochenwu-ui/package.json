@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-spring/web": "^9.7.5",
+    "axios": "^1.7.9",
     "next": "15.1.7",
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",

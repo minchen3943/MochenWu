@@ -15,15 +15,15 @@ CREATE TABLE `mcw_admin`
   DEFAULT CHARSET = utf8mb4 COMMENT = '管理员用户簿';
 DROP TABLE
     IF
-        EXISTS `mcw_articles`;
+        EXISTS `mcw_article`;
 CREATE TABLE `mcw_article`
 (
     article_id            INT AUTO_INCREMENT PRIMARY KEY COMMENT '博客id',
-    article_title         VARCHAR(80) NOT NULL COMMENT '博客标题',
-    article_url          VARCHAR(200) NOT NULL COMMENT '文章路径',
+    article_title         VARCHAR(80)  NOT NULL COMMENT '博客标题',
+    article_url           VARCHAR(200) NOT NULL COMMENT '文章路径',
     article_date          DATETIME COMMENT '文章上传时间',
-    article_visitor_count INT         NOT NULL COMMENT '文章阅读人数',
-    article_status        INT         NOT NULL COMMENT '文章状态(0不显示;1显示;2状态异常)'
+    article_visitor_count INT          NOT NULL COMMENT '文章阅读人数',
+    article_status        INT          NOT NULL COMMENT '文章状态(0不显示;1显示;2状态异常)'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT = '博客表';
 DROP TABLE
@@ -46,16 +46,19 @@ DROP TABLE
 CREATE TABLE `mcw_friend_link`
 (
     link_id      INT AUTO_INCREMENT PRIMARY KEY COMMENT '友链id',
-    link_title   VARCHAR(40) NOT NULL COMMENT '友链标题',
-    link_url     VARCHAR(40) NOT NULL COMMENT '友链链接',
+    link_title   VARCHAR(40)  NOT NULL COMMENT '友链标题',
+    link_url     VARCHAR(40)  NOT NULL COMMENT '友链链接',
     link_img_url VARCHAR(200) NOT NULL COMMENT '友链图片路径',
     link_brief   VARCHAR(60) COMMENT '友链简介',
-    link_status  INT         NOT NULL COMMENT '友链状态(0不显示;1显示;2状态异常)'
+    link_status  INT          NOT NULL COMMENT '友链状态(0不显示;1显示;2状态异常)'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT = '友链表';
 
 DROP TABLE IF EXISTS `mcw_data`;
 CREATE TABLE `mcw_data`
 (
+    data_id       INT AUTO_INCREMENT PRIMARY KEY COMMENT '数据id',
     visitor_count INT NOT NULL COMMENT '网站访问人数'
 )
+INSERT INTO mcw_data (data_id, visitor_count)
+VALUES (1, 0)

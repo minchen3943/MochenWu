@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mochenwu.data.mapper.DataMapper">
+    <resultMap id="BaseResultMap" type="com.mochenwu.data.model.McwData">
+        <result column="visitor_count" jdbcType="INTEGER" property="visitorCount"/>
+    </resultMap>
+
+    <update id="addOneVisitorCount">
+        UPDATE mcw_data
+        SET visitor_count = #{count}
+        WHERE data_id = 1
+    </update>
+
+    <select id="selectVisitorCount" resultType="int">
+        SELECT visitor_count
+        FROM mcw_data
+        WHERE data_id = 1
+    </select>
+</mapper>

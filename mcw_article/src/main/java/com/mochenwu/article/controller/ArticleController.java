@@ -102,10 +102,10 @@ public class ArticleController {
     }
 
     @GetMapping("/get/page")
-    public ResponseEntity<ApiResponse<List<McwArticle>>> getCommentByPage(@RequestParam("page") int page) {
+    public ResponseEntity<ApiResponse<List<McwArticle>>> getCommentByPage(@RequestParam("page") int page, @RequestParam("pageSize")int pageSize) {
         try {
             // 获取指定页码的文章数据
-            List<McwArticle> comments = articleService.getCommentByPage(page);
+            List<McwArticle> comments = articleService.getCommentByPage(page, pageSize);
             // 如果没有文章数据，返回 404 错误
             if (comments.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "查询失败", null));

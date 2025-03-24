@@ -15,7 +15,7 @@ public interface ArticleService extends IService<McwArticle> {
 
     List<McwArticle> getAllComment();
 
-    List<McwArticle> getCommentByPage(int page);
+    List<McwArticle> getCommentByPage(int page, int pageSize);
 
     McwArticle getCommentById(int commentId);
 

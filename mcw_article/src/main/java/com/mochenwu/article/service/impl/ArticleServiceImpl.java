@@ -44,12 +44,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     }
 
     @Override
-    public List<McwArticle> getAllComment() {
+    public List<McwArticle> getAllArticle() {
+        logger.info("Article query all");
         return articleMapper.getAllVisibleArticle();
     }
 
     @Override
-    public List<McwArticle> getCommentByPage(int page, int pageSize) {
+    public List<McwArticle> getArticleByPage(int page, int pageSize) {
         try (Page<McwArticle> ignored = PageHelper.startPage(page, pageSize)) {
             // 调用 articleMapper 获取分页后的文章列表
             logger.info("分页查询成功 {page:{}  pageSize:{}}", page, pageSize);
@@ -62,8 +63,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     }
 
     @Override
-    public McwArticle getCommentById(int commentId) {
-        return articleMapper.getArticleById(commentId);
+    public McwArticle getArticleById(int articleId) {
+        logger.info("Article query by id {}", articleId);
+        return articleMapper.getArticleById(articleId);
     }
 
     @Override

@@ -13,11 +13,11 @@ public interface ArticleService extends IService<McwArticle> {
 
     McwArticle updateArticle(McwArticle mcwArticle);
 
-    List<McwArticle> getAllComment();
+    List<McwArticle> getAllArticle();
 
-    List<McwArticle> getCommentByPage(int page, int pageSize);
+    List<McwArticle> getArticleByPage(int page, int pageSize);
 
-    McwArticle getCommentById(int commentId);
+    McwArticle getArticleById(int articleId);
 
     void delArticleById(int articleId);
 }

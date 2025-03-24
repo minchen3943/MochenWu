@@ -57,8 +57,7 @@ public class CommentController {
             return ResponseEntity.ok(new ApiResponse<>(200, "获取所有可见评论成功", comments));
         } catch (Exception e) {
             // 捕获其他所有异常并返回服务器错误响应
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -72,10 +71,10 @@ public class CommentController {
      * @return 包含评论列表和状态信息的响应实体
      */
     @GetMapping("/get/page")
-    public ResponseEntity<ApiResponse<List<McwComment>>> getCommentByPage(@RequestParam("page") int page) {
+    public ResponseEntity<ApiResponse<List<McwComment>>> getCommentByPage(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
         try {
             // 获取指定页码的评论数据
-            List<McwComment> comments = commentService.getCommentByPage(page);
+            List<McwComment> comments = commentService.getCommentByPage(page, pageSize);
             // 如果没有评论数据，返回 404 错误
             if (comments.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "查询失败", null));
@@ -87,8 +86,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
         } catch (Exception e) {
             // 捕获其他所有异常并返回服务器错误响应
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -117,8 +115,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
         } catch (Exception e) {
             // 捕获其他所有异常并返回服务器错误响应
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -142,17 +139,14 @@ public class CommentController {
                 return ResponseEntity.ok(new ApiResponse<>(200, "添加评论成功", mcwComment));
             } catch (ValidationException e) {
                 // 处理评论数据的验证异常（例如字段缺失或数据无效），返回 400 错误
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
                 // 捕获其他所有异常并返回服务器错误响应
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
             // 如果评论对象不正确，返回 400 错误
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "提交评论有误", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "提交评论有误", null));
         }
     }
 
@@ -169,21 +163,23 @@ public class CommentController {
     public ResponseEntity<ApiResponse<McwComment>> updateComment(@RequestBody McwComment mcwComment) {
         if (mcwComment != null) {
             try {
-                // 更新评论并返回成功响应，包含更新后的评论
-                return ResponseEntity.ok(new ApiResponse<>(200, "修改评论成功", commentService.updateComment(mcwComment)));
+                McwComment finalComment = commentService.updateComment(mcwComment);
+                if (finalComment == null) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "提交评论有误", null));
+                } else {
+                    // 更新评论并返回成功响应，包含更新后的评论
+                    return ResponseEntity.ok(new ApiResponse<>(200, "修改评论成功", commentService.updateComment(mcwComment)));
+                }
             } catch (ValidationException e) {
                 // 处理评论数据的验证异常（例如字段缺失或数据无效），返回 400 错误
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
                 // 捕获其他所有异常并返回服务器错误响应
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
             // 如果评论对象不正确，返回 400 错误
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "提交评论有误", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "提交评论有误", null));
         }
     }
 
@@ -201,12 +197,10 @@ public class CommentController {
             return ResponseEntity.ok(new ApiResponse<>(200, "删除评论成功", null));
         } catch (ValidationException e) {
             // 处理评论数据的验证异常（例如字段缺失或数据无效），返回 400 错误
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
         } catch (Exception e) {
             // 捕获其他所有异常并返回服务器错误响应
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 }

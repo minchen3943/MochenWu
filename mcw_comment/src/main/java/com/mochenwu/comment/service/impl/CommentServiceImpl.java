@@ -34,7 +34,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     /**
      * 构造方法，注入 CommentMapper
      *
-     * @param commentList 注入的 CommentMapper 实例，负责与数据库进行交互
+     * @param commentMapper 注入的 CommentMapper 实例，负责与数据库进行交互
      */
     @Autowired
     public CommentServiceImpl(CommentMapper commentMapper) {
@@ -75,10 +75,10 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
      * @throws RuntimeException 如果分页查询过程中发生异常，则抛出运行时异常
      */
     @Override
-    public List<McwComment> getCommentByPage(int page) {
+    public List<McwComment> getCommentByPage(int page, int pageSize) {
         // 使用 PageHelper 实现分页功能
         // 通过 try-with-resources 确保 Page 对象被自动关闭
-        try (Page<McwComment> ignored = PageHelper.startPage(page, 5)) {
+        try (Page<McwComment> ignored = PageHelper.startPage(page, pageSize)) {
             // 调用 CommentMapper 获取分页后的评论列表
             logger.info("分页查询成功 {page:{}}", page);
             return commentMapper.getAllVisibleComment();
@@ -117,8 +117,13 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     @Override
     public McwComment updateComment(McwComment mcwComment) {
         int id = mcwComment.getCommentId();
+        int status = commentMapper.updateCommentById(mcwComment);
         // 执行更新评论操作
-        logger.info("Comment update {commentId:{}, Updates:{}}", id, commentMapper.updateCommentById(mcwComment));
+        if (status == 0) {
+            logger.error("update comment failed, commentId:{}", id);
+        } else {
+            logger.info("Comment update {commentId:{}, Updates:{}}", id, status);
+        }
         // 返回更新后的评论对象
         return getCommentById(id);
     }

@@ -21,6 +21,7 @@ CREATE TABLE `mcw_article`
     article_id            INT AUTO_INCREMENT PRIMARY KEY COMMENT '博客id',
     article_title         VARCHAR(80)  NOT NULL COMMENT '博客标题',
     article_url           VARCHAR(200) NOT NULL COMMENT '文章路径',
+    article_name          VARCHAR(200) NOT NULL COMMENT '文章名字',
     article_date          DATETIME COMMENT '文章上传时间',
     article_visitor_count INT          NOT NULL COMMENT '文章阅读人数',
     article_status        INT          NOT NULL COMMENT '文章状态(0不显示;1显示;2状态异常)'
@@ -59,6 +60,6 @@ CREATE TABLE `mcw_data`
 (
     data_id       INT AUTO_INCREMENT PRIMARY KEY COMMENT '数据id',
     visitor_count INT NOT NULL COMMENT '网站访问人数'
-)
+);
 INSERT INTO mcw_data (data_id, visitor_count)
 VALUES (1, 0)

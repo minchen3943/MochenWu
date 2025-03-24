@@ -5,19 +5,19 @@
 
     <insert id="addArticle" useGeneratedKeys="true" keyProperty="articleId"
             parameterType="com.mochenwu.article.model.McwArticle">
-        INSERT INTO mcw_article (article_title, article_url, article_date, article_visitor_count,
+        INSERT INTO mcw_article (article_title, article_url, article_name, article_date, article_visitor_count,
                                   article_status)
-        VALUES (#{articleTitle}, #{articleUrl}, #{articleDate}, #{articleVisitorCount},
+        VALUES (#{articleTitle}, #{articleUrl},#{articleName}, #{articleDate}, #{articleVisitorCount},
                 #{articleStatus})
     </insert>
     <update id="updateArticle">
         UPDATE mcw_article
         <set>
             <if test="articleTitle != null and articleTitle != ''">
-                article_title = #{articleTitle}
+                article_title = #{articleTitle},
             </if>
             <if test="articleVisitorCount !=  null and articleVisitorCount != ''">
-                articleVisitorCount = #{articleVisitorCount}
+                article_visitor_count = #{articleVisitorCount},
             </if>
             <if test="articleStatus != null and articleStatus != ''">
                 article_status = #{articleStatus}

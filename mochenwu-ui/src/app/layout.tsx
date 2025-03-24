@@ -27,9 +27,6 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="zh-CN">
-        <head>
-          {/* <script src="https://mcw-article.oss-cn-chengdu.aliyuncs.com/51la.js"></script> */}
-        </head>
         <body className={notoSans.className}>
           <div id="root">
             <header>

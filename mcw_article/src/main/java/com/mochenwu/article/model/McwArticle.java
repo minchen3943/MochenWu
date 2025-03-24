@@ -45,6 +45,19 @@ public class McwArticle {
     @Column(name = "article_status", nullable = false)
     private Integer articleStatus;
 
+    @Size(max = 200)
+    @NotNull
+    @Column(name = "article_name", nullable = false, length = 200)
+    private String articleName;
+
+    public String getArticleName() {
+        return articleName;
+    }
+
+    public void setArticleName(String articleName) {
+        this.articleName = articleName;
+    }
+
     public Integer getArticleId() {
         return articleId;
     }

@@ -37,7 +37,7 @@ public interface CommentService extends IService<McwComment> {
      *             根据页码返回对应的评论列表。
      * @return 返回分页后的评论列表。
      */
-    List<McwComment> getCommentByPage(int page);
+    List<McwComment> getCommentByPage(int page, int pageSize);
 
     /**
      * 更新评论信息。

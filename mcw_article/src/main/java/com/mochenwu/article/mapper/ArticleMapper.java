@@ -19,4 +19,6 @@ public interface ArticleMapper extends BaseMapper<McwArticle> {
     McwArticle getArticleById(int articleId);
 
     void delArticleById(int articleId);
+
+    int getAllArticleNumber();
 }

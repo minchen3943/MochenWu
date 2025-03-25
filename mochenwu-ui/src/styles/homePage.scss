@@ -1,0 +1,34 @@
+.animate-fade-up {
+  -webkit-animation: fade-up 0.5s cubic-bezier(0.42, 0.11, 0.43, 1.73) forwards;
+  animation: fade-up 0.5s cubic-bezier(0.42, 0.11, 0.43, 1.73) forwards;
+}
+
+@for $i from 0 through 48 {
+  .delay-#{$i} {
+    animation-delay: #{25 * $i}ms;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-bg {
+  opacity: 0;
+  will-change: opacity;
+  animation: fadeInBg 500ms ease-in forwards;
+  animation-delay: 500ms;
+}
+
+@keyframes fadeInBg {
+  to {
+    opacity: 1;
+  }
+}

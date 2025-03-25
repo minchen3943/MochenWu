@@ -15,11 +15,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-spring/web": "^9.7.5",
-    "axios": "^1.7.9",
+    "intersection-observer": "^0.12.2",
     "next": "15.1.7",
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sass": "^1.86.0",
+    "styled-components": "^6.1.16"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

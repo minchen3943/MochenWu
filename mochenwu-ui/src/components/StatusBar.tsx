@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import "@/styles/statusBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,9 +15,6 @@ export default function StatusBar() {
       try {
         const currentTime = Date.now();
         const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
-        console.log(currentTime - lastVisitTime);
-        console.log(lastVisitTime);
-        console.log(currentTime);
         if (lastVisitTime && currentTime - lastVisitTime < 30000) {
           const visitorData = await fetch(
             "http://localhost:8080/data/visitor/get"
@@ -77,7 +73,7 @@ export default function StatusBar() {
   };
   return (
     <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] p-3 ml-[15vw] lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
-      <ul className="lg:w-[10vw] flex flex-col h-full gap-6">
+      <ul className="lg:w-[13vw] flex flex-col h-full gap-6">
         <li className="text-lg place-self-center drop-shadow-lg">
           <span className="flex rounded-md py-1 px-3 bg-[#e8d4f9d6]">
             访问人数

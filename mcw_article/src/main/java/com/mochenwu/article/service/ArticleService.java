@@ -20,4 +20,6 @@ public interface ArticleService extends IService<McwArticle> {
     McwArticle getArticleById(int articleId);
 
     void delArticleById(int articleId);
+
+    int getAllArticleNumber();
 }

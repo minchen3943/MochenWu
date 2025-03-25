@@ -53,8 +53,14 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     public List<McwArticle> getArticleByPage(int page, int pageSize) {
         try (Page<McwArticle> ignored = PageHelper.startPage(page, pageSize)) {
             // 调用 articleMapper 获取分页后的文章列表
-            logger.info("分页查询成功 {page:{}  pageSize:{}}", page, pageSize);
-            return articleMapper.getAllVisibleArticle();
+            List<McwArticle> articles = articleMapper.getAllVisibleArticle();
+            if (articles.isEmpty()) {
+                logger.error("分页查询文章数据为空 {page:{}  pageSize:{}}", page, pageSize);
+            } else {
+               logger.info("分页查询成功 {page:{}  pageSize:{}}", page, pageSize);
+            }
+            return articles;
+
         } catch (Exception e) {
             // 捕获异常并抛出运行时异常
             logger.error("分页查询文章时发生错误：{}", e.getMessage());
@@ -72,6 +78,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     public void delArticleById(int articleId) {
         articleMapper.delArticleById(articleId);
         logger.info("Article del {articleId:{}}", articleId);
+    }
+
+    @Override
+    public int getAllArticleNumber() {
+        int output = articleMapper.getAllArticleNumber();
+        logger.info("查询文章总数成功 {}", output);
+        return output;
     }
 
 }

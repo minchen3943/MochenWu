@@ -1,6 +1,6 @@
 import AnimatedContent from "@/components/AnimatedContent";
 import StatusBar from "@/components/StatusBar";
-import "@/styles/homePage.css";
+import "@/styles/homePage.scss";
 export default async function page() {
   const welcome = ["W", "e", "l", "c", "o", "m", "e", ","];
   const emoji = ["ദ", "്", "ദ", "ി", "˶", "•", "̀", "֊", "•", "́", ")", "✧"];
@@ -55,7 +55,7 @@ export default async function page() {
                   </li>
                 ))}
               </ul>
-              <div className="flex rounded-lg p-1 ml-[0.5rem]">
+              <div className="flex rounded-lg bg-[#d6c6e1a4] px-1 lg:p-1 ml-[0.5rem] fade-in-bg">
                 {emoji.map((char, index) => (
                   <span
                     key={`emoji-${index}`}
@@ -158,7 +158,6 @@ export default async function page() {
             </ul>
           </div>
         </div>
-
         <div className="lg:hidden h-6 w-6 absolute m-auto mt-[95vh] top-0 bottom-0 left-0 right-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"

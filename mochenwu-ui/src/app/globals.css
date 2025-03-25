@@ -6,7 +6,6 @@ body {
   background-color: #d0b9df26;
 }
 main {
-  position: absolute;
   padding-top: 7.5vh;
   @media (min-width: 1024px) {
     padding-top: 6vh;

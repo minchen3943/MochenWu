@@ -54,13 +54,14 @@ CREATE TABLE `mcw_friend_link`
     link_status  INT          NOT NULL COMMENT '友链状态(0不显示;1显示;2状态异常)'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT = '友链表';
-
-DROP TABLE IF EXISTS `mcw_data`;
+DROP TABLE
+    IF
+        EXISTS `mcw_data`;
 CREATE TABLE `mcw_data`
 (
     data_id       INT AUTO_INCREMENT PRIMARY KEY COMMENT '数据id',
     visitor_count INT NOT NULL COMMENT '网站访问人数',
-    like_count INT NOT NULL COMMENT '网站喜欢人数'
+    like_count    INT NOT NULL COMMENT '网站喜欢人数'
 );
 INSERT INTO mcw_data (data_id, visitor_count, like_count)
 VALUES (1, 0, 0)

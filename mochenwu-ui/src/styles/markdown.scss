@@ -1,0 +1,208 @@
+.markdown-title {
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.markdown-body {
+  padding: 2rem;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+
+    &:hover {
+      color: #000000;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #eaecef;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #eaecef;
+  }
+
+  .code-block {
+    margin: 16px 0;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: transform 0.1s ease;
+
+    .code-header {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #eaecef;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background-color: #ff5f56;
+        border-radius: 50%;
+        box-shadow: 24px 0 0 #ffbd2e, 48px 0 0 #27c93f;
+      }
+
+      .language-name {
+        margin-left: 80px;
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+      }
+
+      .copy-button {
+        padding: 3px 5px;
+        font-size: 10px;
+        color: #666;
+        background-color: transparent;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          background-color: #f1f1f1;
+          border-color: #999;
+        }
+      }
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      overflow: auto;
+    }
+
+    code {
+      background-color: #e4e4e7;
+      padding: 0.75rem;
+      font-family: monospace;
+      border-radius: 8px;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: #4a4a4a;
+    text-decoration: underline;
+    text-decoration-color: #bcbcbc;
+    text-decoration-thickness: 0.0625rem;
+    text-underline-offset: 0.25rem;
+    position: relative;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+
+    &:hover {
+      color: #000;
+      text-decoration-color: #000;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.375rem;
+      display: inline-block;
+      width: 1rem; // w-4 通常为 1rem
+      height: 1rem;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z' clip-rule='evenodd'/%3E%3C/svg%3E")
+        no-repeat center;
+      background-size: contain;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      -webkit-transform: translate(1px, -2px);
+      -moz-transform: translate(1px, -2px);
+      -ms-transform: translate(1px, -2px);
+      -o-transform: translate(1px, -2px);
+      transform: translate(1px, -2px);
+    }
+  }
+
+  svg {
+    display: inline-flex;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 16px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: auto;
+    margin: 16px 0;
+    font-size: 14px;
+    display: block;
+    overflow-x: auto;
+
+    th,
+    td {
+      padding: 6px 13px;
+      border: 1px solid #e1e4e8;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: 600;
+      background-color: #f6f8fa;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #fafafa;
+    }
+
+    tr:hover {
+      background-color: #f6f8fa;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 1.25rem;
+  }
+}

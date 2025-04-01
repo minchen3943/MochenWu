@@ -20,7 +20,7 @@ export default function Navbar() {
   const linkList = [
     { name: "首页", link: "/" },
     { name: "博客", link: "/blog" },
-    { name: "评论", link: "/comment" },
+    { name: "留言", link: "/message" },
     { name: "关于", link: "/about" },
   ];
 

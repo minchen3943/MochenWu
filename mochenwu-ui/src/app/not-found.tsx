@@ -3,14 +3,6 @@ import { Link } from "next-view-transitions";
 export default function NotFound() {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full">
-        <body class="h-full">
-        ```
-      */}
       <div className="grid min-h-full place-items-center px-6 py-32 lg:py-64 lg:px-8">
         <div className="text-center">
           <p className="font-semibold text-indigo-600 text-5xl">404</p>

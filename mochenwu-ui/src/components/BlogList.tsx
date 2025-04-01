@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "next-view-transitions";
+import config from "../../mcw-config.json";
 import Loader from "./Loader";
+import axios from "axios";
 
 interface Article {
   articleId: number;
@@ -36,10 +38,10 @@ export default function BlogList() {
 
   useEffect(() => {
     async function getArticleByPage(pageNumber: number) {
-      const articleData = await fetch(
-        `http://localhost:8080/article/get/page?page=${pageNumber}&pageSize=${pageSize}`
+      const articleData = await axios.get(
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/page?page=${pageNumber}&pageSize=${pageSize}`
       );
-      const article = await articleData.json();
+      const article = await articleData.data;
       if (article.code === 200) {
         setArticleArray((articleArray) => {
           const filteredNewArticles = article.data.filter(
@@ -60,10 +62,10 @@ export default function BlogList() {
 
   useEffect(() => {
     async function getArticlePageNumber(pageSize: number) {
-      const maxPageNumberData = await fetch(
-        `http://localhost:8080/article/get/page/number?pageSize=${pageSize}`
+      const maxPageNumberData = await axios.get(
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/page/number?pageSize=${pageSize}`
       );
-      const maxPageNumbers = await maxPageNumberData.json();
+      const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));
     }
     getArticlePageNumber(pageSize);

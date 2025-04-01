@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import "@/styles/statusBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import config from "../../mcw-config.json";
+import axios from "axios";
 
 export default function StatusBar() {
   const [visitors, setVisitors] = useState("");
   const [likes, setLikes] = useState("");
   const [likeEdit, setLikeEdit] = useState(true);
+  const [buttonClick, setButtonClick] = useState(false);
   const [likeColor, setLikeColor] = useState(false);
 
   useEffect(() => {
@@ -16,10 +19,10 @@ export default function StatusBar() {
         const currentTime = Date.now();
         const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
         if (lastVisitTime && currentTime - lastVisitTime < 30000) {
-          const visitorData = await fetch(
-            "http://localhost:8080/data/visitor/get"
+          const visitorData = await axios.get(
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/visitor/get`
           );
-          const visitor = await visitorData.json();
+          const visitor = await visitorData.data;
           if (visitor.code === 200) {
             setVisitors(visitor.data);
             localStorage.setItem("lastVisitTime", currentTime.toString());
@@ -27,13 +30,10 @@ export default function StatusBar() {
             setVisitors("null");
           }
         } else {
-          const visitorData = await fetch(
-            "http://localhost:8080/data/visitor/add",
-            {
-              method: "PUT",
-            }
+          const visitorData = await axios.put(
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/visitor/add`
           );
-          const visitor = await visitorData.json();
+          const visitor = await visitorData.data;
           if (visitor.code === 200) {
             setVisitors(visitor.data);
             localStorage.setItem("lastVisitTime", currentTime.toString());
@@ -41,8 +41,10 @@ export default function StatusBar() {
             setVisitors("null");
           }
         }
-        const likeData = await fetch("http://localhost:8080/data/like/get");
-        const like = await likeData.json();
+        const likeData = await axios.get(
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/like/get`
+        );
+        const like = await likeData.data;
         setLikes(like.data);
       } catch (error) {
         console.error("数据获取失败:", error);
@@ -55,13 +57,16 @@ export default function StatusBar() {
   const likeAdd = async () => {
     if (likeEdit) {
       try {
-        const response = await fetch("http://localhost:8080/data/like/add", {
-          method: "PUT",
-        });
-        const data = await response.json();
+        const response = await axios.put(
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/like/add`
+        );
+        const data = await response.data;
         if (data.code === 200) {
           setLikes(data.data); // 更新点赞数
           setLikeColor(true);
+          setTimeout(() => {
+            setButtonClick(true);
+          }, 1000);
         } else {
           console.error("点赞失败:", data.message);
         }
@@ -85,7 +90,9 @@ export default function StatusBar() {
         <li className="text-lg place-self-center drop-shadow-xl">
           <button
             type="button"
-            className="button flex rounded-md py-1 px-3 bg-[#8c53b59f] lg:hover:bg-[#8c53b558] "
+            className={`${
+              buttonClick ? "" : "button"
+            } flex rounded-md py-1 px-3 bg-[#8c53b59f] lg:hover:bg-[#8c53b558]`}
             onClick={likeAdd}>
             喜欢本站
             <span className="ml-2 rounded-lg">

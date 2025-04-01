@@ -8,8 +8,10 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import config from "../../mcw-config.json";
 import "highlight.js/styles/github.css";
 import "@/styles/markdown.scss";
+import axios from "axios";
 
 const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
@@ -32,12 +34,15 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`http://localhost:8080/article/get/id?articleId=${articleId}`)
-      .then((response) => response.json())
+    axios
+      .get(
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/id?articleId=${articleId}`
+      )
+      .then((response) => response.data)
       .then(async (data) => {
         if (data.code === 200 && data.data?.articleUrl) {
-          const response = await fetch(data.data.articleUrl);
-          const markdownContent = await response.text();
+          const response = await axios.get(data.data.articleUrl);
+          const markdownContent = response.data;
           setBlogTitle(data.data?.articleTitle);
           setBlogTime(formatDate(data.data?.articleDate));
           setBlogVisitorCount(data.data?.articleVisitorCount);
@@ -58,9 +63,9 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
     <>
       <div className={`px-8 pt-12 ${error || loading ? "hidden" : ""}`}>
         <div className="markdown-title">{blogTitle}</div>
-        <div className="flex select-none flex-wrap items-center text-center ml-[22.5vw] justify-end gap-4 mt-4">
-          <div className="flex min-w-0 shrink grow flex-wrap gap-2 text-sm">
-            <div className="flex min-w-0 items-center space-x-1">
+        <div className="flex select-none flex-wrap items-center text-center ml-[12.5vw] lg:ml-[22.5vw] justify-end gap-4 mt-4">
+          <div className="flex shrink grow flex-wrap gap-2 text-sm">
+            <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +83,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
               </span>
               <span>{blogTime}</span>
             </div>
-            <div className="flex min-w-0 items-center space-x-1">
+            <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

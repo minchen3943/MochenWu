@@ -21,7 +21,8 @@ public class GlobalCorsConfig {
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
-                "http://192.168.5.2:3000"
+                "http://192.168.5.2:3000",
+                "http://192.168.5.3:3000"
         ));
         //是否发送 Cookie
         config.setAllowCredentials(true);

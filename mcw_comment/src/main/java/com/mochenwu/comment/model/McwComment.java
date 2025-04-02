@@ -40,7 +40,7 @@ public class McwComment {
      * 评论用户的电子邮件，可为空，长度为20个字符
      * 映射到数据库中的 comment_user_email 字段
      */
-    @Column(name = "comment_user_email", length = 20)
+    @Column(name = "comment_user_email", length = 40)
     private String commentUserEmail;
 
     /**

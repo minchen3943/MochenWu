@@ -40,13 +40,13 @@ export default function Navbar() {
             {linkList.map((item) => (
               <div
                 key={item.name}
-                className={`text-lg  rounded-lg font-sans w-16 h-full text-center relative ${
+                className={`font-medium text-xl rounded-lg w-16 h-full text-center relative ${
                   pathname === item.link
                     ? "text-[#9A73B5]"
                     : "text-[#4A4A4A] lg:hover:text-[#D6C6E1]"
                 }`}>
-                <Link href={item.link} className="h-full w-full block">
-                  {item.name}
+                <Link href={item.link} className="h-full w-full flex">
+                  <span className="ml-3 mt-1">{item.name}</span>
                 </Link>
               </div>
             ))}

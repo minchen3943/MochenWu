@@ -87,11 +87,11 @@ export default function BlogList() {
           href={`/blog/${article.articleId}`}
           key={article.articleId}
           className="bg-[#e8d4f9d6] lg:bg-[#e8d4f961] lg:hover:bg-[#] w-full h-24 p-4 pl-4 my-3 rounded-xl hover:drop-shadow-lg">
-          <h2 className="relative break-words text-xl font-medium">
+          <h2 className="relative break-words text-2xl font-medium">
             {article.articleTitle}
           </h2>
-          <div className="flex select-none flex-wrap items-center justify-end gap-4 mt-4">
-            <div className="flex min-w-0 shrink grow flex-wrap gap-2 text-sm">
+          <div className="flex select-none flex-wrap items-center justify-end gap-4 mt-2">
+            <div className="flex min-w-0 shrink grow flex-wrap gap-2 text-base">
               <div className="flex min-w-0 items-center space-x-1">
                 <span>
                   <svg

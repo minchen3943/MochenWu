@@ -62,7 +62,7 @@ export default function StatusBar() {
         );
         const data = await response.data;
         if (data.code === 200) {
-          setLikes(data.data); // 更新点赞数
+          setLikes(data.data);
           setLikeColor(true);
           setTimeout(() => {
             setButtonClick(true);
@@ -79,7 +79,7 @@ export default function StatusBar() {
   return (
     <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] p-3 ml-[15vw] lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
       <ul className="lg:w-[13vw] flex flex-col h-full gap-6">
-        <li className="text-lg place-self-center drop-shadow-lg">
+        <li className="text-lg place-self-center drop-shadow-md">
           <span className="flex rounded-md py-1 px-3 bg-[#e8d4f9d6]">
             访问人数
             <span className="ml-2 px-1 bg-[#9a73b54e] rounded-md">
@@ -87,7 +87,7 @@ export default function StatusBar() {
             </span>
           </span>
         </li>
-        <li className="text-lg place-self-center drop-shadow-xl">
+        <li className="text-lg place-self-center drop-shadow-2xl">
           <button
             type="button"
             className={`${

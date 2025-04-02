@@ -41,6 +41,6 @@
     </delete>
 
     <select id="getAllArticleNumber" resultType="int">
-        SELECT COUNT(*) FROM mcw_article
+        SELECT COUNT(*) FROM mcw_article WHERE article_status = 1
     </select>
 </mapper>

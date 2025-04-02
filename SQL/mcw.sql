@@ -33,7 +33,7 @@ DROP TABLE
 CREATE TABLE `mcw_comment`
 (
     comment_id         INT AUTO_INCREMENT PRIMARY KEY COMMENT '评论id',
-    comment_user_name  VARCHAR(40) NOT NULL COMMENT '评论用户名',
+    comment_user_name  VARCHAR(20) NOT NULL COMMENT '评论用户名',
     comment_user_email VARCHAR(40) COMMENT '评论用户邮箱',
     comment_user_ip    VARCHAR(20) NOT NULL COMMENT '评论用户ip',
     comment_content    TEXT        NOT NULL COMMENT '评论内容',

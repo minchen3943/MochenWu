@@ -58,6 +58,32 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
       })
       .finally(() => setLoading(false));
   }, [articleId]);
+  useEffect(() => {
+    axios
+      .put(
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/visitorAdd`,
+        {},
+        {
+          params: { articleId },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => response.data)
+      .then(async (data) => {
+        if (data.code === 200 && data.data?.articleUrl) {
+          const response = await axios.get(data.data.articleUrl);
+          const markdownContent = response.data;
+          setBlogTitle(data.data?.articleTitle);
+          setBlogTime(formatDate(data.data?.articleDate));
+          setBlogVisitorCount(data.data?.articleVisitorCount);
+          return setBlogContent(markdownContent);
+        } else {
+          throw new Error("文章数据无效");
+        }
+      });
+  }, []);
 
   return (
     <>
@@ -145,6 +171,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                           {match[1].charAt(0).toUpperCase() + match[1].slice(1)}
                         </span>
                         <button
+                          title="copy"
                           type="button"
                           onClick={() => {
                             const codeElement = document.getElementById(codeId);

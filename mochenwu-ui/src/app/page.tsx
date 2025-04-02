@@ -42,8 +42,8 @@ export default async function page() {
   ];
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-[90vw] lg:w-[80vw] lg:h-[94vh] mx-[5vw] lg:mx-[10vw] font-normal font-sans">
-        <div className="lg:w-[40vw] h-[17.5vh] mt-[29vh] ml-[5vw] text-2xl">
+      <div className="flex flex-col lg:flex-row w-[90vw] lg:w-[80vw] lg:h-[94vh] mx-[5vw] lg:mx-[10vw] font-medium">
+        <div className="lg:w-[40vw] lg:h-[17.5vh] mt-[29vh] ml-[6vw] text-2xl">
           <div className="lg:hidden flex flex-col">
             <div className="flex items-center">
               <ul className="flex flex-wrap gap-[0.2rem] z-10">
@@ -133,7 +133,7 @@ export default async function page() {
               </div>
             </div>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-4">
+            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-2">
               {line3.map((char, index) => (
                 <li
                   key={`desktop-line2-${index}`}

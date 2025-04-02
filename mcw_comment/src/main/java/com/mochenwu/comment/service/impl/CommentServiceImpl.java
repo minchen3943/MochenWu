@@ -80,8 +80,13 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
         // 通过 try-with-resources 确保 Page 对象被自动关闭
         try (Page<McwComment> ignored = PageHelper.startPage(page, pageSize)) {
             // 调用 CommentMapper 获取分页后的评论列表
-            logger.info("分页查询成功 {page:{}}", page);
-            return commentMapper.getAllVisibleComment();
+            List<McwComment> comments = commentMapper.getAllVisibleComment();
+            if (comments.isEmpty()) {
+                logger.error("分页查询评论数据为空 {page:{}  pageSize:{}}", page, pageSize);
+            } else {
+                logger.info("分页查询成功 {page:{}  pageSize:{}}", page, pageSize);
+            }
+            return comments;
         } catch (Exception e) {
             // 捕获异常并抛出运行时异常
             logger.error("分页查询评论时发生错误：{}", e.getMessage());
@@ -132,5 +137,12 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     public void delCommentById(int commentId) {
         commentMapper.delCommentById(commentId);
         logger.info("Comment del {commentId:{}}", commentId);
+    }
+
+    @Override
+    public int getAllCommentNumber() {
+        int output = commentMapper.getAllCommentNumber();
+        logger.info("查询评论总数成功 {}", output);
+        return output;
     }
 }

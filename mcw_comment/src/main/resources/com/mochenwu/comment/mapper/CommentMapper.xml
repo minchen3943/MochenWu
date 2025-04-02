@@ -70,6 +70,7 @@
         SELECT *
         FROM mcw_comment
         WHERE comment_status = 1 <!-- 只查询状态为可见的评论 -->
+        ORDER BY comment_date DESC
     </select>
 
     <!--
@@ -82,4 +83,7 @@
         WHERE comment_id = #{commentId} <!-- 根据评论ID查询 -->
     </select>
 
+    <select id="getAllCommentNumber" resultType="int">
+        SELECT COUNT(*) FROM mcw_comment WHERE comment_status = 1
+    </select>
 </mapper>

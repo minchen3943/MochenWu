@@ -57,4 +57,6 @@ public interface CommentService extends IService<McwComment> {
     McwComment getCommentById(int commentId);
 
     void delCommentById(int commentId);
+
+    int getAllCommentNumber();
 }

@@ -77,7 +77,7 @@ public class CommentController {
             List<McwComment> comments = commentService.getCommentByPage(page, pageSize);
             // 如果没有评论数据，返回 404 错误
             if (comments.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "查询失败", null));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(404, "查询失败，数据为空", null));
             }
             // 返回成功响应，包含评论列表
             return ResponseEntity.ok(new ApiResponse<>(200, "分页获取评论成功", comments));
@@ -201,6 +201,20 @@ public class CommentController {
         } catch (Exception e) {
             // 捕获其他所有异常并返回服务器错误响应
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+        }
+    }
+    @GetMapping("/get/page/number")
+    public ResponseEntity<ApiResponse<Integer>> getCommentPageNumber(@RequestParam("pageSize") int pageSize) {
+        try {
+            Integer pageNumber = (int) Math.ceil((double) commentService.getAllCommentNumber() / (double) pageSize);
+            return ResponseEntity.ok(new ApiResponse<>(200, "获取所有页数成功", pageNumber));
+        } catch (ValidationException e) {
+            // 处理分页参数错误时的异常，返回 400 错误
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
+        } catch (Exception e) {
+            // 捕获其他所有异常并返回服务器错误响应
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 }

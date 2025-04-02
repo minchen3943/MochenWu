@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import SucceedMessage from "@/components/SucceedMessage";
+import MessageList from "@/components/MessageList";
 
 export default function Page() {
   const [mounted, setMounted] = useState(false);
@@ -31,7 +32,7 @@ export default function Page() {
 
     const fetchIp = async () => {
       try {
-        const response = await axios.get("https://api64.ipify.org?format=json");
+        const response = await axios.get("https://ipinfo.io/json");
         setIp(response.data.ip);
       } catch (error) {
         console.error("获取 IP 失败", error);
@@ -63,7 +64,7 @@ export default function Page() {
       reset();
     } catch (error) {
       console.error("提交失败", error);
-      setErrorMessage("提交失败，请检查输入信息后重试！");
+      setErrorMessage("提交失败，请检查输入信息并稍后再试重试！");
     } finally {
       setLoading(false);
     }
@@ -77,7 +78,7 @@ export default function Page() {
     <div className="w-[90vw] lg:w-[54vw] mx-[5vw] lg:mx-[23vw] mt-[5vh] lg:mt-[7.5vh]">
       <div className="text-3xl font-semibold">留言板</div>
       <div className="mt-[3vh] text-lg font-normal">来都来了，说点什么吧~</div>
-      <div className="mt-[30vh]">
+      <div className="lg:mt-[30vh]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex my-5">
             <input
@@ -122,7 +123,11 @@ export default function Page() {
               <FontAwesomeIcon icon={faPaperPlane} />
             )}
           </button>
-          {errorMessage && <div>{errorMessage}</div>}
+          {errorMessage && (
+            <div className="bg-red-600 rounded-lg text-center py-1">
+              {errorMessage}
+            </div>
+          )}
           {successMessage && (
             <SucceedMessage
               message1="留言提交成功！"
@@ -130,6 +135,9 @@ export default function Page() {
             />
           )}
         </form>
+      </div>
+      <div className="mt-20 lg:mt-40">
+        <MessageList />
       </div>
     </div>
   );

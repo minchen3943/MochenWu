@@ -47,7 +47,7 @@ public class McwComment {
      * 评论用户的IP地址，不能为空，长度为20个字符
      * 映射到数据库中的 comment_user_ip 字段，要求非空
      */
-    @Column(name = "comment_user_ip", nullable = false, length = 20)
+    @Column(name = "comment_user_ip", nullable = false, length = 40)
     @NotBlank(message = "IP地址不能为空")
     private String commentUserIp;
 

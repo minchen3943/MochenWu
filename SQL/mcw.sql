@@ -35,12 +35,14 @@ CREATE TABLE `mcw_comment`
     comment_id         INT AUTO_INCREMENT PRIMARY KEY COMMENT '评论id',
     comment_user_name  VARCHAR(20) NOT NULL COMMENT '评论用户名',
     comment_user_email VARCHAR(40) COMMENT '评论用户邮箱',
-    comment_user_ip    VARCHAR(20) NOT NULL COMMENT '评论用户ip',
+    comment_user_ip    VARCHAR(40) NOT NULL COMMENT '评论用户ip',
     comment_content    TEXT        NOT NULL COMMENT '评论内容',
     comment_date       DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
     comment_status     INT         NOT NULL COMMENT '评论状态(0不显示;1显示;2状态异常)'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT = '评论表';
+ALTER TABLE `mcw_comment`
+    ADD INDEX `idx_status_date` (`comment_status`, `comment_date` DESC);
 DROP TABLE
     IF
         EXISTS `mcw_friend_link`;

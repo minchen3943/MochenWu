@@ -59,4 +59,5 @@ public interface CommentMapper extends BaseMapper<McwComment> {
 
     void delCommentById(int commentId);
 
+    int getAllCommentNumber();
 }

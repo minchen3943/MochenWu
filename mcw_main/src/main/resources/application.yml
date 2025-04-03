@@ -12,6 +12,16 @@ spring:
     multipart:
       max-file-size: 5MB
       max-request-size: 50MB
+  web:
+    resources:
+      chain:
+        cache: true
+        compressed: true
+      cache:
+        period: 60s
+        cachecontrol:
+          max-age: 60
+          cache-public: true
 
 logging:
   file:

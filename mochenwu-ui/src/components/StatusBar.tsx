@@ -20,7 +20,7 @@ export default function StatusBar() {
         const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
         if (lastVisitTime && currentTime - lastVisitTime < 30000) {
           const visitorData = await axios.get(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/visitor/get`
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/get`
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
@@ -31,7 +31,7 @@ export default function StatusBar() {
           }
         } else {
           const visitorData = await axios.put(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/visitor/add`
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/add`
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
@@ -42,7 +42,7 @@ export default function StatusBar() {
           }
         }
         const likeData = await axios.get(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/like/get`
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/get`
         );
         const like = await likeData.data;
         setLikes(like.data);
@@ -58,7 +58,7 @@ export default function StatusBar() {
     if (likeEdit) {
       try {
         const response = await axios.put(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/data/like/add`
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/add`
         );
         const data = await response.data;
         if (data.code === 200) {
@@ -77,7 +77,7 @@ export default function StatusBar() {
     }
   };
   return (
-    <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] p-3 ml-[15vw] lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
+    <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] p-3 lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
       <ul className="lg:w-[13vw] flex flex-col h-full gap-6">
         <li className="text-lg place-self-center drop-shadow-md">
           <span className="flex rounded-md py-1 px-3 bg-[#e8d4f9d6]">

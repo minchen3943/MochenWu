@@ -9,8 +9,8 @@ export default async function Page({
 
   return (
     <>
-      <div className="absolute w-[100vw] h-[40vh] top-[-0vh] bg-gradient-to-b from-[#ead3ff8a] to-[#00000000] -z-50"></div>
-      <div className="mt-[3vh] w-[90vw] lg:w-[60vw] ml-[5vw] lg:ml-[20vw]">
+      <div className="absolute w-full h-[40vh] top-[-0vh] bg-gradient-to-b from-[#ead3ff8a] to-[#00000000] -z-50"></div>
+      <div className="w-[90vw] lg:w-[60vw] mx-[5vw] lg:mx-[20vw]">
         <Markdown articleId={Number(slug)} />
       </div>
     </>

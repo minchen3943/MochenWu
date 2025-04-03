@@ -9,7 +9,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollThreshold = window.innerHeight / 3;
+      const scrollThreshold = window.innerHeight / 5;
       setIsScrolled(window.scrollY > scrollThreshold);
     };
 
@@ -26,31 +26,30 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`transition-all duration-300 py-[1.5vh] ${
         isScrolled
-          ? "bg-[#f8edff81] backdrop-blur-3xl border-b drop-shadow-lg border-gray-200"
+          ? "bg-[#f8edff81] backdrop-blur-3xl drop-shadow-lg border-[#00000000]"
           : ""
       }`}>
       <div
-        className={`w-[80vw] lg:w-[25vw] lg:h-[4.5vh] h-[6vh] mx-[10vw] lg:mx-[37.5vw] my-[1.5vh] border-[#5b5b5b35] bg-[#ffffffcc] rounded-full border ${
-          isScrolled ? "" : "drop-shadow-lg"
+        className={`grid w-fit lg:h-[3.75vh] h-[4.875vh] mx-auto left-0 right-0 px-3 items-center rounded-full transition-all duration-300 ${
+          isScrolled
+            ? ""
+            : "drop-shadow-lg border border-[#5b5b5b35] bg-[#f8edff81]"
         }`}>
-        <div className="flex h-full items-center justify-center">
-          <div className="flex w-full justify-evenly">
-            {linkList.map((item) => (
-              <div
-                key={item.name}
-                className={`font-medium text-xl rounded-lg w-16 h-full text-center relative ${
-                  pathname === item.link
-                    ? "text-[#9A73B5]"
-                    : "text-[#4A4A4A] lg:hover:text-[#D6C6E1]"
-                }`}>
-                <Link href={item.link} className="h-full w-full flex">
-                  <span className="ml-3 mt-1">{item.name}</span>
-                </Link>
-              </div>
-            ))}
-          </div>
+        <div className="flex">
+          {linkList.map((item) => (
+            <Link
+              key={item.link}
+              href={item.link}
+              className={`grid justify-center text-xl rounded-lg w-[4.125rem] ${
+                pathname === item.link
+                  ? "text-[#9A73B5]"
+                  : "text-[#4A4A4A] lg:hover:text-[#D6C6E1]"
+              }`}>
+              <span className="mt-[0.125rem]">{item.name}</span>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

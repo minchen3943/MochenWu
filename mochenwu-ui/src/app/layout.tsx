@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
+import Footer from "@/components/Footer";
 
 const Font = localFont({
   src: "../public/font.woff",
@@ -35,6 +36,9 @@ export default function RootLayout({
               <Navbar />
             </header>
             <main>{children}</main>
+            <footer>
+              <Footer />
+            </footer>
           </div>
         </body>
       </html>

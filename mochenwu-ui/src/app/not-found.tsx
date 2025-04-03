@@ -2,8 +2,8 @@ import { Link } from "next-view-transitions";
 
 export default function NotFound() {
   return (
-    <>
-      <div className="grid min-h-full place-items-center px-6 py-32 lg:py-64 lg:px-8">
+    <div className="w-full h-[94vh]">
+      <div className="grid place-items-center px-6 py-32 lg:py-64 lg:px-8">
         <div className="text-center">
           <p className="font-semibold text-indigo-600 text-5xl">404</p>
           <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
@@ -15,15 +15,15 @@ export default function NotFound() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href="/"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Go back home
             </Link>
-            <a href="#" className="hidden text-sm font-semibold text-gray-900">
+            <Link href="#" className="hidden text-sm text-gray-900">
               Contact support <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

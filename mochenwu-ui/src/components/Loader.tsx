@@ -1,54 +1,14 @@
 import React from "react";
-import styled from "styled-components";
+import "@/styles/Loader.css"; // 引入 CSS 文件
 
 const Loader = () => {
   return (
-    <StyledWrapper>
+    <div className="styled-wrapper">
       <svg viewBox="25 25 50 50">
         <circle r={20} cy={50} cx={50} />
       </svg>
-    </StyledWrapper>
+    </div>
   );
 };
-
-const StyledWrapper = styled.div`
-  svg {
-    width: 3.25em;
-    transform-origin: center;
-    animation: rotate4 2s linear infinite;
-  }
-
-  circle {
-    fill: none;
-    stroke: hsl(214, 97%, 59%);
-    stroke-width: 2;
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-    animation: dash4 1.5s ease-in-out infinite;
-  }
-
-  @keyframes rotate4 {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes dash4 {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-
-    50% {
-      stroke-dasharray: 90, 200;
-      stroke-dashoffset: -35px;
-    }
-
-    100% {
-      stroke-dashoffset: -125px;
-    }
-  }
-`;
 
 export default Loader;

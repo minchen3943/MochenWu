@@ -25,9 +25,7 @@ export default function BlogList() {
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries[0].intersectionRatio <= 0) return;
-      setTimeout(() => {
-        setPageNumber(pageNumber + 0.5);
-      });
+      setPageNumber(pageNumber + 0.5);
     });
 
     const h2Element = document.querySelector("#pageChange");
@@ -39,7 +37,7 @@ export default function BlogList() {
   useEffect(() => {
     async function getArticleByPage(pageNumber: number) {
       const articleData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/page?page=${pageNumber}&pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page?page=${pageNumber}&pageSize=${pageSize}`
       );
       const article = await articleData.data;
       if (article.code === 200) {
@@ -63,7 +61,7 @@ export default function BlogList() {
   useEffect(() => {
     async function getArticlePageNumber(pageSize: number) {
       const maxPageNumberData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/page/number?pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page/number?pageSize=${pageSize}`
       );
       const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));
@@ -138,14 +136,12 @@ export default function BlogList() {
         </Link>
       ))}
       <div
-        className={`w-full px-[37vw] lg:px-[28vw] ${
+        id="pageChange"
+        className={`w-full px-[37vw] lg:px-[28vw] h-24 ${
           pageNumber >= maxPageNumber ? "hidden" : ""
         }`}>
         <Loader />
       </div>
-      <div
-        className={`h-4 lg:h-12 ${pageNumber >= maxPageNumber ? "hidden" : ""}`}
-        id="pageChange"></div>
     </div>
   );
 }

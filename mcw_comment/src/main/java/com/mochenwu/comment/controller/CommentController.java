@@ -22,7 +22,7 @@ import java.util.List;
  * @Date 2025-02-21 22:15:04
  */
 @RestController
-@RequestMapping("/comment/*")
+@RequestMapping("/api/comment/*")
 public class CommentController {
 
     private final CommentService commentService;

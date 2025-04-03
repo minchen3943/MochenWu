@@ -36,7 +36,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
 
     axios
       .get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/get/id?articleId=${articleId}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${articleId}`
       )
       .then((response) => response.data)
       .then(async (data) => {
@@ -61,7 +61,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
   useEffect(() => {
     axios
       .put(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/article/visitorAdd`,
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/visitorAdd`,
         {},
         {
           params: { articleId },
@@ -88,9 +88,12 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
   return (
     <>
       <div className={`px-8 pt-12 ${error || loading ? "hidden" : ""}`}>
-        <div className="markdown-title">{blogTitle}</div>
-        <div className="flex select-none flex-wrap items-center text-center ml-[12.5vw] lg:ml-[22.5vw] justify-end gap-4 mt-4">
-          <div className="flex shrink grow flex-wrap gap-2 text-sm">
+        <div>
+          <div className="markdown-title">{blogTitle}</div>
+        </div>
+
+        <div className="absolute m-auto left-0 right-0 w-fit h-fit">
+          <div className="flex items-center text-sm gap-2">
             <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
                 <svg
@@ -107,7 +110,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   />
                 </svg>
               </span>
-              <span>{blogTime}</span>
+              <span className="pt-1">{blogTime}</span>
             </div>
             <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
@@ -130,7 +133,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   />
                 </svg>
               </span>
-              <span>{blogVisitorCount}</span>
+              <span className="pt-1">{blogVisitorCount}</span>
             </div>
           </div>
         </div>

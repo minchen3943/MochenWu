@@ -19,7 +19,7 @@ export default function MessageList() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [maxPageNumber, setMaxPageNumber] = useState<number>(1);
-  let pageSize = 6;
+  let pageSize = 10;
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -38,7 +38,7 @@ export default function MessageList() {
   useEffect(() => {
     async function getCommentsByPage(pageNumber: number) {
       const commentData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`
       );
       const commentResponse = await commentData.data;
       if (commentResponse.code === 200) {
@@ -62,7 +62,7 @@ export default function MessageList() {
   useEffect(() => {
     async function getCommentPageNumber(pageSize: number) {
       const maxPageNumberData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/comment/get/page/number?pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page/number?pageSize=${pageSize}`
       );
       const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));

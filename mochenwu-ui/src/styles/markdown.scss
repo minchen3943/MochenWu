@@ -1,11 +1,17 @@
 .markdown-title {
+  width: fit-content;
+  height: fit-content;
   font-weight: 600;
   font-size: 2rem;
-  text-align: center;
+  position: relative;
+  margin: auto;
+  left: 0;
+  right: 0;
 }
 
 .markdown-body {
   padding: 2rem;
+  padding-top: 3.25rem;
   line-height: 1.6;
   font-size: 16px;
   color: #333;

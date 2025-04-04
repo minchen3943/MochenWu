@@ -91,7 +91,6 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
         <div>
           <div className="markdown-title">{blogTitle}</div>
         </div>
-
         <div className="absolute m-auto left-0 right-0 w-fit h-fit">
           <div className="flex items-center text-sm gap-2">
             <div className="flex items-center space-x-1">
@@ -156,6 +155,9 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                     {children}
                   </a>
                 );
+              },
+              img: ({ node, src, alt, ...props }) => {
+                return <img src={src} alt="图片加载异常" {...props} />;
               },
               code({ className, children }) {
                 const match = /language-(\w+)/.exec(className || "");

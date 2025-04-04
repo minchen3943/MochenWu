@@ -8,7 +8,8 @@ export default function Footer() {
         <div className="w-fit h-fit">
           <span>Find us</span>
           <span className="px-3">|</span>
-          <ul className="inline-flex gap-3">
+          <span className="pb-1 text-lg font-normal">To 瞑尘</span>
+          <ul className="pl-3 inline-flex gap-3">
             <li className="size-8">
               <a href="https://github.com/minchen3943" title="Github">
                 <p className="flex items-center justify-center size-8 bg-black rounded-full transition duration-200 ease-in-out hover:scale-110">
@@ -28,15 +29,13 @@ export default function Footer() {
             </li>
             <li className="size-8">
               <a href="https://t.me/minchen3943" title="Telegram">
-                <p className="flex items-center justify-center size-8 bg-[#2399d5] rounded-full transition duration-200 ease-in-out hover:scale-110">
+                <p className="flex items-center justify-center size-8 bg-[#2399d5] rounded-full transition duration-200 hover:scale-110 backface-hidden []">
                   <svg
                     className="size-5"
                     viewBox="0 0 1024 1024"
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
-                    p-id="9801"
-                    width="200"
-                    height="200">
+                    p-id="9801">
                     <path
                       d="M417.28 795.733333l11.946667-180.48 327.68-295.253333c14.506667-13.226667-2.986667-19.626667-22.186667-8.106667L330.24 567.466667 155.306667 512c-37.546667-10.666667-37.973333-36.693333 8.533333-55.466667l681.386667-262.826666c31.146667-14.08 61.013333 7.68 49.066666 55.466666l-116.053333 546.56c-8.106667 38.826667-31.573333 48.213333-64 30.293334L537.6 695.466667l-84.906667 82.346666c-9.813333 9.813333-17.92 17.92-35.413333 17.92z"
                       fill="#ffffff"
@@ -75,6 +74,8 @@ export default function Footer() {
               </a>
             </li>
           </ul>
+          <span className="px-3">|</span>
+          <span className="pb-1 text-lg font-normal">To 沫鸯</span>
         </div>
       </div>
       <div className="flex w-full h-fit my-3 lg:mt-2 lg:px-44 text-sm justify-center lg:justify-normal text-[#626262] font-sans">

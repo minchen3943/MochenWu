@@ -78,31 +78,8 @@ export default function Page() {
     <div className="w-[90vw] lg:w-[54vw] mx-[5vw] lg:mx-[23vw] mt-[5vh] lg:mt-[7.5vh]">
       <div className="text-3xl font-semibold">留言板</div>
       <div className="mt-[3vh] text-lg font-normal">来都来了，说点什么吧~</div>
-      <div className="lg:mt-[30vh]">
+      <div className="mt-[35vh] lg:mt-[30vh]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex my-5">
-            <input
-              {...register("commentUserName", {
-                required: true,
-                maxLength: 20,
-              })}
-              placeholder="昵称*  (不能大于20字符)"
-              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 mr-[2.5vw] lg:mr-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] border-gray-300 [&:not(:placeholder-shown)]:font-sans`}
-            />
-
-            <input
-              {...register("commentUserEmail", {
-                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                maxLength: 40,
-              })}
-              placeholder="邮箱  (不能大于40字符)"
-              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 ml-[2.5vw] lg:ml-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] [&:not(:placeholder-shown)]:font-sans ${
-                watch("commentUserEmail") && errors.commentUserEmail
-                  ? "border-red-500"
-                  : "border-gray-300"
-              }`}
-            />
-          </div>
           <div className="">
             <textarea
               {...register("commentContent", {
@@ -110,7 +87,29 @@ export default function Page() {
                 maxLength: 1000,
               })}
               placeholder="说点什么好呢~ *"
-              className={`w-full h-24 p-3 rounded-xl border focus-visible:outline-[#c2a1dbcf] border-gray-300 resize-none [&:not(:placeholder-shown)]:font-sans`}></textarea>
+              className={`w-full h-24 p-3 rounded-xl border focus-visible:outline-[#c2a1dbcf] border-gray-300 resize-none not-placeholder-shown:font-sans`}></textarea>
+          </div>
+          <div className="flex mt-3">
+            <input
+              {...register("commentUserName", {
+                required: true,
+                maxLength: 20,
+              })}
+              placeholder="昵称*  (不能大于20字符)"
+              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 mr-[2.5vw] lg:mr-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] border-gray-300 not-placeholder-shown:font-sans`}
+            />
+            <input
+              {...register("commentUserEmail", {
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                maxLength: 40,
+              })}
+              placeholder="邮箱  (不能大于40字符)"
+              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 ml-[2.5vw] lg:ml-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] not-placeholder-shown:font-sans ${
+                watch("commentUserEmail") && errors.commentUserEmail
+                  ? "border-red-500"
+                  : "border-gray-300"
+              }`}
+            />
           </div>
           <button
             title="Submit Form"

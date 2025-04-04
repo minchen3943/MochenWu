@@ -26,10 +26,10 @@ const SucceedMessage: React.FC<SucceedMessageProps> = ({
     <>
       <div
         aria-live="assertive"
-        className="pointer-events-none fixed inset-0 flex px-4 py-6 z-[100]">
+        className="pointer-events-none fixed inset-0 flex px-4 py-6 z-100">
         <div className="flex w-full flex-col items-end space-y-4">
           <Transition show={show}>
-            <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white ring-1 shadow-lg ring-black/5 transition data-closed:opacity-0 data-enter:transform data-enter:duration-300 data-enter:ease-out data-closed:data-enter:translate-y-2 data-leave:duration-100 data-leave:ease-in data-closed:data-enter:sm:translate-x-2 data-closed:data-enter:sm:translate-y-0">
+            <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white ring-1 shadow-lg ring-black/5 transition data-closed:opacity-0 data-enter:transform data-enter:duration-300 data-enter:ease-out data-closed:data-enter:translate-y-2 data-leave:duration-100 data-leave:ease-in sm:data-closed:data-enter:translate-x-2 sm:data-closed:data-enter:translate-y-0">
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="shrink-0">

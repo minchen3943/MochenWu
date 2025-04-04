@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-background: var(--background);
@@ -38,6 +38,8 @@
 
 body {
   background-color: #d0b9df26;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 main {
   padding-top: 7.5vh;

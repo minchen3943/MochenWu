@@ -26,10 +26,11 @@ const SucceedMessage: React.FC<SucceedMessageProps> = ({
     <>
       <div
         aria-live="assertive"
-        className="pointer-events-none fixed inset-0 flex px-4 py-6 z-100">
+        className="z-100 pointer-events-none fixed inset-0 flex px-4 py-6"
+      >
         <div className="flex w-full flex-col items-end space-y-4">
           <Transition show={show}>
-            <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white ring-1 shadow-lg ring-black/5 transition data-closed:opacity-0 data-enter:transform data-enter:duration-300 data-enter:ease-out data-closed:data-enter:translate-y-2 data-leave:duration-100 data-leave:ease-in sm:data-closed:data-enter:translate-x-2 sm:data-closed:data-enter:translate-y-0">
+            <div className="data-closed:opacity-0 data-enter:transform data-enter:duration-300 data-enter:ease-out data-closed:data-enter:translate-y-2 data-leave:duration-100 data-leave:ease-in sm:data-closed:data-enter:translate-x-2 sm:data-closed:data-enter:translate-y-0 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5 transition">
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="shrink-0">
@@ -50,7 +51,8 @@ const SucceedMessage: React.FC<SucceedMessageProps> = ({
                       onClick={() => {
                         setShow(false);
                       }}
-                      className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 ">
+                      className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500"
+                    >
                       <span className="sr-only">Close</span>
                       <XMarkIcon aria-hidden="true" className="size-5" />
                     </button>

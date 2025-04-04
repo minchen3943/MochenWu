@@ -36,7 +36,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
 
     axios
       .get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${articleId}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${articleId}`,
       )
       .then((response) => response.data)
       .then(async (data) => {
@@ -68,7 +68,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       )
       .then((response) => response.data)
       .then(async (data) => {
@@ -91,8 +91,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
         <div>
           <div className="markdown-title">{blogTitle}</div>
         </div>
-        <div className="absolute m-auto left-0 right-0 w-fit h-fit">
-          <div className="flex items-center text-sm gap-2">
+        <div className="absolute left-0 right-0 m-auto h-fit w-fit">
+          <div className="flex items-center gap-2 text-sm">
             <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
                 <svg
@@ -101,7 +101,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-4">
+                  className="size-4"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -119,7 +120,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-4">
+                  className="size-4"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -151,7 +153,12 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
             components={{
               a: ({ node, href, children, ...props }) => {
                 return (
-                  <a href={href} target="_blank" rel="noreferrer" {...props}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                  >
                     {children}
                   </a>
                 );
@@ -189,7 +196,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                                 navigator.clipboard
                                   .writeText(textToCopy)
                                   .catch((err) =>
-                                    console.error("复制失败:", err)
+                                    console.error("复制失败:", err),
                                   );
                               } else {
                                 // 回退方案：使用 execCommand
@@ -208,7 +215,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                             }
                             setClick(true);
                           }}
-                          className="copy-button">
+                          className="copy-button"
+                        >
                           {click ? (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +224,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                               viewBox="0 0 24 24"
                               strokeWidth={1.5}
                               stroke="currentColor"
-                              className="size-5">
+                              className="size-5"
+                            >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -230,7 +239,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                               viewBox="0 0 24 24"
                               strokeWidth={1.5}
                               stroke="currentColor"
-                              className="size-5">
+                              className="size-5"
+                            >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -250,7 +260,8 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                 }
                 return <code className={className}>{children}</code>;
               },
-            }}>
+            }}
+          >
             {blogContent}
           </ReactMarkdown>
         )}

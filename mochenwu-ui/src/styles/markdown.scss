@@ -26,7 +26,9 @@
     margin-bottom: 16px;
     font-weight: 600;
     line-height: 1.25;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition:
+      color 0.3s ease,
+      text-shadow 0.3s ease;
 
     &:hover {
       color: #000000;
@@ -73,7 +75,9 @@
         height: 12px;
         background-color: #ff5f56;
         border-radius: 50%;
-        box-shadow: 24px 0 0 #ffbd2e, 48px 0 0 #27c93f;
+        box-shadow:
+          24px 0 0 #ffbd2e,
+          48px 0 0 #27c93f;
       }
 
       .language-name {
@@ -124,7 +128,9 @@
     text-decoration-thickness: 0.0625rem;
     text-underline-offset: 0.25rem;
     position: relative;
-    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+    transition:
+      color 0.3s ease,
+      text-decoration-color 0.3s ease;
 
     &:hover {
       color: #000;

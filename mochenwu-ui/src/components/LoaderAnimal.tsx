@@ -8,7 +8,8 @@ const Loader = () => {
       <div
         aria-label="Orange and tan hamster running in a metal wheel"
         role="img"
-        className="wheel-and-hamster">
+        className="wheel-and-hamster"
+      >
         <div className="wheel" />
         <div className="hamster">
           <div className="hamster__body">
@@ -79,7 +80,8 @@ const StyledWrapper = styled.div`
     animation: hamsterHead var(--dur) ease-in-out infinite;
     background: hsl(30, 90%, 55%);
     border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
-    box-shadow: 0 -0.25em 0 hsl(30, 90%, 80%) inset,
+    box-shadow:
+      0 -0.25em 0 hsl(30, 90%, 80%) inset,
       0.75em -1.55em 0 hsl(30, 90%, 90%) inset;
     top: 0;
     left: -2em;
@@ -123,7 +125,8 @@ const StyledWrapper = styled.div`
     animation: hamsterBody var(--dur) ease-in-out infinite;
     background: hsl(30, 90%, 90%);
     border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
-    box-shadow: 0.1em 0.75em 0 hsl(30, 90%, 55%) inset,
+    box-shadow:
+      0.1em 0.75em 0 hsl(30, 90%, 55%) inset,
       0.15em -0.5em 0 hsl(30, 90%, 80%) inset;
     top: 0.25em;
     left: 2em;
@@ -202,7 +205,8 @@ const StyledWrapper = styled.div`
 
   .spoke {
     animation: spoke var(--dur) linear infinite;
-    background: radial-gradient(
+    background:
+      radial-gradient(
         100% 100% at center,
         hsl(0, 0%, 60%) 4.8%,
         hsla(0, 0%, 60%, 0) 5%

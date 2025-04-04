@@ -29,7 +29,7 @@ export default function StatusBar() {
         const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
         if (lastVisitTime && currentTime - lastVisitTime < 30000) {
           const visitorData = await axios.get(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/get`
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/get`,
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
@@ -40,7 +40,7 @@ export default function StatusBar() {
           }
         } else {
           const visitorData = await axios.put(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/add`
+            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/add`,
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
@@ -51,7 +51,7 @@ export default function StatusBar() {
           }
         }
         const likeData = await axios.get(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/get`
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/get`,
         );
         const like = await likeData.data;
         setLikes(like.data);
@@ -67,7 +67,7 @@ export default function StatusBar() {
     if (likeEdit) {
       try {
         const response = await axios.put(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/add`
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/add`,
         );
         const data = await response.data;
         if (data.code === 200) {
@@ -86,37 +86,38 @@ export default function StatusBar() {
     }
   };
   return (
-    <div className="w-[60vw] lg:w-[15vw] h-[40vh] lg:h-[25vh] p-3 lg:ml-[20vw] mt-[54vh] lg:mt-[45vh] rounded-2xl drop-shadow-lg">
-      <ul className="lg:w-[13vw] flex flex-col h-full gap-6">
-        <li className="text-lg place-self-center drop-shadow-md">
-          <span className="flex rounded-md py-1 px-3 bg-[#e8d4f9d6]">
-            <div className="min-w-36 flex justify-center">
+    <div className="mt-[54vh] h-[40vh] w-[60vw] rounded-2xl p-3 drop-shadow-lg lg:ml-[20vw] lg:mt-[45vh] lg:h-[25vh] lg:w-[15vw]">
+      <ul className="flex h-full flex-col gap-6 lg:w-[13vw]">
+        <li className="place-self-center text-lg drop-shadow-md">
+          <span className="flex rounded-md bg-[#e8d4f9d6] px-3 py-1">
+            <div className="flex min-w-36 justify-center">
               访问人数
-              <span className="ml-2 px-1 bg-[#9a73b54e] rounded-md">
+              <span className="ml-2 rounded-md bg-[#9a73b54e] px-1">
                 {visitors}
               </span>
             </div>
           </span>
         </li>
-        <li className="text-lg place-self-center drop-shadow-md">
-          <span className="flex rounded-md py-1 px-3 bg-[#e8d4f9d6]">
-            <div className="min-w-36 flex justify-center">
+        <li className="place-self-center text-lg drop-shadow-md">
+          <span className="flex rounded-md bg-[#e8d4f9d6] px-3 py-1">
+            <div className="flex min-w-36 justify-center">
               本站已运行
-              <span className="ml-2 px-1 bg-[#9a73b54e] rounded-md">
+              <span className="ml-2 rounded-md bg-[#9a73b54e] px-1">
                 {time}
               </span>
               天
             </div>
           </span>
         </li>
-        <li className="text-lg place-self-center drop-shadow-2xl">
+        <li className="place-self-center text-lg drop-shadow-2xl">
           <button
             type="button"
             className={`${
               buttonClick ? "" : "button"
-            } flex rounded-md py-1 px-3 bg-[#8c53b59f] lg:hover:bg-[#8c53b558]`}
-            onClick={likeAdd}>
-            <div className="min-w-36 flex justify-center">
+            } flex rounded-md bg-[#8c53b59f] px-3 py-1 lg:hover:bg-[#8c53b558]`}
+            onClick={likeAdd}
+          >
+            <div className="flex min-w-36 justify-center">
               喜欢本站
               <span className="ml-2 rounded-lg">
                 <FontAwesomeIcon
@@ -124,7 +125,7 @@ export default function StatusBar() {
                   style={likeColor ? { color: "#f13b3b" } : {}}
                 />
               </span>
-              <span className="ml-2 px-1 bg-[#8c5fbfa0] rounded-md">
+              <span className="ml-2 rounded-md bg-[#8c5fbfa0] px-1">
                 {likes}
               </span>
             </div>

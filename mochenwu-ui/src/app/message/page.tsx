@@ -58,7 +58,7 @@ export default function Page() {
     try {
       await axios.post(
         `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/add`,
-        payload
+        payload,
       );
       setSuccessMessage(true);
       reset();
@@ -75,7 +75,7 @@ export default function Page() {
   }
 
   return (
-    <div className="w-[90vw] lg:w-[54vw] mx-[5vw] lg:mx-[23vw] mt-[5vh] lg:mt-[7.5vh]">
+    <div className="mx-[5vw] mt-[5vh] w-[90vw] lg:mx-[23vw] lg:mt-[7.5vh] lg:w-[54vw]">
       <div className="text-3xl font-semibold">留言板</div>
       <div className="mt-[3vh] text-lg font-normal">来都来了，说点什么吧~</div>
       <div className="mt-[35vh] lg:mt-[30vh]">
@@ -87,16 +87,17 @@ export default function Page() {
                 maxLength: 1000,
               })}
               placeholder="说点什么好呢~ *"
-              className={`w-full h-24 p-3 rounded-xl border focus-visible:outline-[#c2a1dbcf] border-gray-300 resize-none not-placeholder-shown:font-sans`}></textarea>
+              className={`not-placeholder-shown:font-sans h-24 w-full resize-none rounded-xl border border-gray-300 p-3 focus-visible:outline-[#c2a1dbcf]`}
+            ></textarea>
           </div>
-          <div className="flex mt-3">
+          <div className="mt-3 flex">
             <input
               {...register("commentUserName", {
                 required: true,
                 maxLength: 20,
               })}
               placeholder="昵称*  (不能大于20字符)"
-              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 mr-[2.5vw] lg:mr-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] border-gray-300 not-placeholder-shown:font-sans`}
+              className={`not-placeholder-shown:font-sans mr-[2.5vw] h-11 w-[42.5vw] rounded-xl border border-gray-300 px-2 text-sm focus-visible:outline-[#c2a1dbcf] lg:mr-[2vw] lg:h-9 lg:w-[25vw] lg:px-3 lg:text-base`}
             />
             <input
               {...register("commentUserEmail", {
@@ -104,7 +105,7 @@ export default function Page() {
                 maxLength: 40,
               })}
               placeholder="邮箱  (不能大于40字符)"
-              className={`w-[42.5vw] lg:w-[25vw] h-11 lg:h-9 ml-[2.5vw] lg:ml-[2vw] px-2 lg:px-3 rounded-xl border text-sm lg:text-base focus-visible:outline-[#c2a1dbcf] not-placeholder-shown:font-sans ${
+              className={`not-placeholder-shown:font-sans ml-[2.5vw] h-11 w-[42.5vw] rounded-xl border px-2 text-sm focus-visible:outline-[#c2a1dbcf] lg:ml-[2vw] lg:h-9 lg:w-[25vw] lg:px-3 lg:text-base ${
                 watch("commentUserEmail") && errors.commentUserEmail
                   ? "border-red-500"
                   : "border-gray-300"
@@ -115,7 +116,8 @@ export default function Page() {
             title="Submit Form"
             type="submit"
             disabled={loading}
-            className="px-2 py-1 ml-[83.5vw] lg:ml-[52vw] text-[#9A73B5]">
+            className="ml-[83.5vw] px-2 py-1 text-[#9A73B5] lg:ml-[52vw] lg:py-2"
+          >
             {loading ? (
               <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
             ) : (
@@ -123,7 +125,7 @@ export default function Page() {
             )}
           </button>
           {errorMessage && (
-            <div className="bg-red-600 rounded-lg text-center py-1">
+            <div className="rounded-lg bg-red-600 py-1 text-center">
               {errorMessage}
             </div>
           )}

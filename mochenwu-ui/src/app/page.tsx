@@ -42,57 +42,61 @@ export default async function page() {
   ];
   return (
     <>
-      <div className="flex flex-col lg:flex-row w-[90vw] lg:w-[80vw] lg:h-[94vh] mx-[5vw] lg:mx-[10vw] items-center lg:items-stretch font-medium">
-        <div className="lg:w-[40vw] lg:h-[17.5vh] mt-[29vh] text-2xl">
-          <div className="lg:hidden flex flex-col">
+      <div className="mx-[5vw] flex w-[90vw] flex-col items-center font-medium lg:mx-[10vw] lg:h-[94vh] lg:w-[80vw] lg:flex-row lg:items-stretch">
+        <div className="mt-[29vh] text-2xl lg:h-[17.5vh] lg:w-[40vw]">
+          <div className="flex flex-col lg:hidden">
             <div className="flex items-center">
-              <ul className="flex flex-wrap gap-[0.2rem] z-10">
+              <ul className="z-10 flex flex-wrap gap-[0.2rem]">
                 {welcome.map((char, index) => (
                   <li
                     key={`welcome-${index}`}
-                    className={`animate-fade-up opacity-0 delay-${index}`}>
+                    className={`animate-fade-up opacity-0 delay-${index}`}
+                  >
                     {char}
                   </li>
                 ))}
               </ul>
-              <div className="flex rounded-lg bg-[#d6c6e1a4] px-1 lg:p-1 ml-[0.5rem] fade-in-bg">
+              <div className="fade-in-bg ml-[0.5rem] flex rounded-lg bg-[#d6c6e1a4] px-1 lg:p-1">
                 {emoji.map((char, index) => (
                   <span
                     key={`emoji-${index}`}
                     className={`animate-fade-up opacity-0 delay-${
                       index + welcome.length
-                    }`}>
+                    }`}
+                  >
                     {char}
                   </span>
                 ))}
               </div>
             </div>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-4">
+            <ul className="z-10 mt-4 flex flex-wrap gap-[0.2rem]">
               {line2.map((char, index) => (
                 <li
                   key={`line2-${index}`}
                   className={`animate-fade-up opacity-0 delay-${
                     index + welcome.length + emoji.length
-                  }`}>
+                  }`}
+                >
                   {char}
                 </li>
               ))}
             </ul>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-4">
+            <ul className="z-10 mt-4 flex flex-wrap gap-[0.2rem]">
               {line3.map((char, index) => (
                 <li
                   key={`line3-${index}`}
                   className={`animate-fade-up opacity-0 delay-${
                     index + welcome.length + emoji.length + line2.length
-                  }`}>
+                  }`}
+                >
                   {char}
                 </li>
               ))}
             </ul>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-4">
+            <ul className="z-10 mt-4 flex flex-wrap gap-[0.2rem]">
               {line4.map((char, index) => (
                 <li
                   key={`line4-${index}`}
@@ -102,7 +106,8 @@ export default async function page() {
                     emoji.length +
                     line2.length +
                     line3.length
-                  }`}>
+                  }`}
+                >
                   {char}
                 </li>
               ))}
@@ -111,61 +116,66 @@ export default async function page() {
 
           <div className="hidden lg:block">
             <div className="flex items-center">
-              <ul className="flex flex-wrap gap-[0.2rem] z-10">
+              <ul className="z-10 flex flex-wrap gap-[0.2rem]">
                 {desktopLine1.map((char, index) => (
                   <li
                     key={`desktop-${index}`}
-                    className={`animate-fade-up opacity-0 delay-${index}`}>
+                    className={`animate-fade-up opacity-0 delay-${index}`}
+                  >
                     {char}
                   </li>
                 ))}
               </ul>
-              <div className="flex hover:bg-[#d6c6e1a4] rounded-lg p-1 ml-[0.5rem]">
+              <div className="ml-[0.5rem] flex rounded-lg p-1 hover:bg-[#d6c6e1a4]">
                 {emoji.map((char, index) => (
                   <span
                     key={`emoji-${index}`}
                     className={`animate-fade-up opacity-0 delay-${
                       index + desktopLine1.length
-                    }`}>
+                    }`}
+                  >
                     {char}
                   </span>
                 ))}
               </div>
             </div>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-2">
+            <ul className="z-10 mt-2 flex flex-wrap gap-[0.2rem]">
               {line3.map((char, index) => (
                 <li
                   key={`desktop-line2-${index}`}
                   className={`animate-fade-up opacity-0 delay-${
                     index + desktopLine1.length + emoji.length
-                  }`}>
+                  }`}
+                >
                   {char}
                 </li>
               ))}
             </ul>
 
-            <ul className="flex flex-wrap gap-[0.2rem] z-10 mt-2">
+            <ul className="z-10 mt-2 flex flex-wrap gap-[0.2rem]">
               {line4.map((char, index) => (
                 <li
                   key={`desktop-line3-${index}`}
                   className={`animate-fade-up opacity-0 delay-${
                     index + desktopLine1.length + emoji.length + line3.length
-                  }`}>
+                  }`}
+                >
                   {char}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="lg:hidden h-6 w-6 absolute m-auto mt-[95vh] top-0 bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 top-0 m-auto mt-[95vh] h-6 w-6 lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6 animate-bounce">
+            className="size-6 animate-bounce"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -182,7 +192,8 @@ export default async function page() {
           initialOpacity={0.0}
           animateOpacity={true}
           scale={0.7}
-          threshold={0.1}>
+          threshold={0.1}
+        >
           <StatusBar />
         </AnimatedContent>
       </div>

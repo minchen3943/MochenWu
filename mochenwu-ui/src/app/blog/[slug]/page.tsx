@@ -10,8 +10,8 @@ export default async function Page({
 
   return (
     <>
-      <div className="absolute w-full h-[40vh] top-[-0vh] bg-linear-to-b from-[#ead3ff8a] to-[#00000000] -z-50"></div>
-      <div className="w-[90vw] lg:w-[60vw] mx-[5vw] lg:mx-[20vw]">
+      <div className="bg-linear-to-b absolute top-[-0vh] -z-50 h-[40vh] w-full from-[#ead3ff8a] to-[#00000000]"></div>
+      <div className="mx-[5vw] w-[90vw] lg:mx-[20vw] lg:w-[60vw]">
         <Markdown articleId={Number(slug)} />
         <CopyrightNotice />
       </div>

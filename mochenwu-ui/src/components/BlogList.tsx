@@ -37,7 +37,7 @@ export default function BlogList() {
   useEffect(() => {
     async function getArticleByPage(pageNumber: number) {
       const articleData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page?page=${pageNumber}&pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page?page=${pageNumber}&pageSize=${pageSize}`,
       );
       const article = await articleData.data;
       if (article.code === 200) {
@@ -46,8 +46,8 @@ export default function BlogList() {
             (newArticle: Article) =>
               !articleArray.some(
                 (existingArticle) =>
-                  existingArticle.articleId === newArticle.articleId
-              )
+                  existingArticle.articleId === newArticle.articleId,
+              ),
           );
           return [...articleArray, ...filteredNewArticles];
         });
@@ -61,7 +61,7 @@ export default function BlogList() {
   useEffect(() => {
     async function getArticlePageNumber(pageSize: number) {
       const maxPageNumberData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page/number?pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page/number?pageSize=${pageSize}`,
       );
       const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));
@@ -79,16 +79,17 @@ export default function BlogList() {
     return `${year}年${month}月${day}日 星期${weekday}`;
   }
   return (
-    <div className="flex flex-col bg-slate-600、50 w-full">
+    <div className="bg-slate-600、50 flex w-full flex-col">
       {articleArray.map((article) => (
         <Link
           href={`/blog/${article.articleId}`}
           key={article.articleId}
-          className="bg-[#e8d4f9d6] lg:bg-[#e8d4f961] lg:hover:bg-[#] w-full h-24 p-4 pl-4 my-3 rounded-xl hover:drop-shadow-lg">
+          className="my-3 h-24 w-full rounded-xl bg-[#e8d4f9d6] p-4 pl-4 hover:drop-shadow-lg lg:bg-[#e8d4f961] lg:hover:bg-[#]"
+        >
           <h2 className="relative break-words text-2xl font-medium">
             {article.articleTitle}
           </h2>
-          <div className="flex select-none flex-wrap items-center justify-end gap-4 mt-2">
+          <div className="mt-2 flex select-none flex-wrap items-center justify-end gap-4">
             <div className="flex min-w-0 shrink grow flex-wrap gap-2 text-base">
               <div className="flex min-w-0 items-center space-x-1">
                 <span>
@@ -98,7 +99,8 @@ export default function BlogList() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-4">
+                    className="size-4"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -116,7 +118,8 @@ export default function BlogList() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-4">
+                    className="size-4"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -137,9 +140,10 @@ export default function BlogList() {
       ))}
       <div
         id="pageChange"
-        className={`w-full px-[37vw] lg:px-[28vw] h-24 ${
+        className={`h-24 w-full px-[37vw] lg:px-[28vw] ${
           pageNumber >= maxPageNumber ? "hidden" : ""
-        }`}>
+        }`}
+      >
         <Loader />
       </div>
     </div>

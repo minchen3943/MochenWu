@@ -43,7 +43,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
           }, delay);
         }
       },
-      { threshold }
+      { threshold },
     );
 
     observer.observe(element);

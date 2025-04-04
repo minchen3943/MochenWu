@@ -26,27 +26,30 @@ export default function Navbar() {
 
   return (
     <div
-      className={`transition-all duration-300 py-[1.5vh] ${
+      className={`py-[1.5vh] transition-all duration-300 ${
         isScrolled
-          ? "bg-[#f8edff81] backdrop-blur-3xl drop-shadow-lg border-[#00000000]"
+          ? "border-[#00000000] bg-[#f8edff81] drop-shadow-lg backdrop-blur-3xl"
           : ""
-      }`}>
+      }`}
+    >
       <div
-        className={`grid w-fit lg:h-[3.75vh] h-[4.875vh] mx-auto left-0 right-0 px-3 items-center rounded-full transition-all duration-300 ${
+        className={`left-0 right-0 mx-auto grid h-[4.875vh] w-fit items-center rounded-full px-3 transition-all duration-300 lg:h-[3.75vh] ${
           isScrolled
             ? ""
-            : "drop-shadow-lg border border-[#5b5b5b35] bg-[#f8edff81]"
-        }`}>
+            : "border border-[#5b5b5b35] bg-[#f8edff81] drop-shadow-lg"
+        }`}
+      >
         <div className="flex">
           {linkList.map((item) => (
             <Link
               key={item.link}
               href={item.link}
-              className={`grid justify-center text-xl rounded-lg w-[4.125rem] ${
+              className={`grid w-[4.125rem] justify-center rounded-lg text-xl ${
                 pathname === item.link
                   ? "text-[#9A73B5]"
                   : "text-[#4A4A4A] lg:hover:text-[#D6C6E1]"
-              }`}>
+              }`}
+            >
               <span className="mt-[0.125rem]">{item.name}</span>
             </Link>
           ))}

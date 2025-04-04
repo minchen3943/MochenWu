@@ -7,7 +7,10 @@ export default function CopyrightNotice() {
         本站文章均采用
         <a
           href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed"
-          className="px-1 underline underline-offset-4 decoration-1 decoration-[#bcbcbc] hover:decoration-black hover:text-black transition duration-300 ease-in-out">
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-1 underline decoration-[#bcbcbc] decoration-1 underline-offset-4 transition duration-300 ease-in-out hover:text-black hover:decoration-black"
+        >
           署名—非商业性使用—禁止演绎 4.0 协议
         </a>
         ，转载请注明出处。
@@ -16,7 +19,10 @@ export default function CopyrightNotice() {
         若您发现本站内容有侵犯到您的合法权益，请及时联系
         <a
           href="mailto:minchen3943@outlook.com"
-          className="px-1 underline underline-offset-4 decoration-1 decoration-[#bcbcbc] hover:decoration-black hover:text-black transition duration-300 ease-in-out">
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-1 underline decoration-[#bcbcbc] decoration-1 underline-offset-4 transition duration-300 ease-in-out hover:text-black hover:decoration-black"
+        >
           瞑尘
         </a>
       </p>

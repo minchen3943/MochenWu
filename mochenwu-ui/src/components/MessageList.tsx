@@ -38,7 +38,7 @@ export default function MessageList() {
   useEffect(() => {
     async function getCommentsByPage(pageNumber: number) {
       const commentData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`,
       );
       const commentResponse = await commentData.data;
       if (commentResponse.code === 200) {
@@ -47,8 +47,8 @@ export default function MessageList() {
             (newComment: Comment) =>
               !comments.some(
                 (existingComment) =>
-                  existingComment.commentId === newComment.commentId
-              )
+                  existingComment.commentId === newComment.commentId,
+              ),
           );
           return [...comments, ...filteredNewComments];
         });
@@ -62,7 +62,7 @@ export default function MessageList() {
   useEffect(() => {
     async function getCommentPageNumber(pageSize: number) {
       const maxPageNumberData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page/number?pageSize=${pageSize}`
+        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page/number?pageSize=${pageSize}`,
       );
       const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));
@@ -81,11 +81,11 @@ export default function MessageList() {
   }
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-600、50 w-full">
+    <div className="bg-slate-600、50 flex w-full flex-col gap-3">
       {comments.map((comment) => (
-        <div key={comment.commentId} className=" w-full h-auto my-1 rounded-xl">
-          <div className="flex gap-2 items-center mt-2">
-            <h2 className="text-xl font-semibold ml-1 lg:ml-2">
+        <div key={comment.commentId} className="my-1 h-auto w-full rounded-xl">
+          <div className="mt-2 flex items-center gap-2">
+            <h2 className="ml-1 text-xl font-semibold lg:ml-2">
               {comment.commentUserName}
             </h2>
             <div className="flex min-w-0 items-center space-x-1 text-xs">
@@ -96,7 +96,8 @@ export default function MessageList() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-3">
+                  className="size-3"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -107,8 +108,8 @@ export default function MessageList() {
               <span>{formatDate(comment.commentDate)}</span>
             </div>
           </div>
-          <p className="mt-2 ml-3 lg:ml-4 text-base break-words">
-            <span className="bg-[#e8d4f961]  p-1 px-2 rounded-xl rounded-bl-sm">
+          <p className="ml-3 mt-2 break-words text-base lg:ml-4">
+            <span className="rounded-xl rounded-bl-sm bg-[#e8d4f961] p-1 px-2">
               {comment.commentContent}
             </span>
           </p>
@@ -117,12 +118,14 @@ export default function MessageList() {
       <div
         className={`w-full px-[37vw] lg:px-[28vw] ${
           pageNumber >= maxPageNumber ? "hidden" : ""
-        }`}>
+        }`}
+      >
         <Loader />
       </div>
       <div
         className={`h-4 lg:h-12 ${pageNumber >= maxPageNumber ? "hidden" : ""}`}
-        id="pageChange"></div>
+        id="pageChange"
+      ></div>
     </div>
   );
 }

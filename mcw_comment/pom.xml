@@ -3,42 +3,49 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父项目配置 -->
     <parent>
         <groupId>com.mochenwu</groupId>
         <artifactId>MochenWu</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
+    <!-- 当前模块的 artifactId -->
     <artifactId>mcw_comment</artifactId>
+    <!-- 当前模块的版本 -->
+    <version>1.0.0</version>
 
     <properties>
+        <!-- 编译源代码的 JDK 版本 -->
         <maven.compiler.source>21</maven.compiler.source>
+        <!-- 编译目标的 JDK 版本 -->
         <maven.compiler.target>21</maven.compiler.target>
+        <!-- 项目源代码的编码格式 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- hibernate校验 -->
+        <!-- Hibernate 校验框架 -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>8.0.1.Final</version>
+            <!-- 参考：https://hibernate.org/validator/releases/ -->
         </dependency>
 
-        <!--分页查询工具-->
+        <!-- 分页查询工具 PageHelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>2.1.0</version>
+            <!-- 参考：https://github.com/pagehelper/Mybatis-PageHelper -->
         </dependency>
 
-        <!--Api工具-->
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_general</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
-
     </dependencies>
-
 </project>

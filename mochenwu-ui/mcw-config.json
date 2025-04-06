@@ -1,5 +1,23 @@
 {
   "server": {
     "axios": { "protocol": "http", "host": "192.168.5.3", "port": "8080" }
-  }
+  },
+  "RouteMap": [
+    {
+      "name": "首页",
+      "link": "/"
+    },
+    {
+      "name": "博客",
+      "link": "/blog"
+    },
+    {
+      "name": "留言",
+      "link": "/message"
+    },
+    {
+      "name": "更多",
+      "link": "/more"
+    }
+  ]
 }

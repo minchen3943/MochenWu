@@ -5,10 +5,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 /**
- * @author 32035
+ * 全局请求日志记录配置类。
+ *
+ * <p>该配置类用于设置全局的请求日志记录策略，记录客户端信息、查询字符串、请求体和请求头等内容。</p>
+ *
+ * @author 瞑尘
+ * @date 2025/04/06
  */
 @Configuration
 public class RequestLoggingConfig {
+
+    /**
+     * 配置请求日志记录过滤器。
+     *
+     * <p>该方法配置了 {@link CommonsRequestLoggingFilter}，用于记录HTTP请求的详细信息，包括：
+     * 客户端信息、查询字符串、请求体和请求头等。</p>
+     *
+     * @return 配置好的 {@link CommonsRequestLoggingFilter} 实例
+     */
     @Bean
     public CommonsRequestLoggingFilter requestLoggingFilter() {
         CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();

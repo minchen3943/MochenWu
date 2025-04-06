@@ -1,5 +1,24 @@
 import CopyrightNotice from "@/components/CopyrightNotice";
 import Markdown from "@/components/Markdown";
+import axios from "axios";
+import config from "../../../../mcw-config.json";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const blogData = await axios
+    .get(
+      `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${slug}`,
+    )
+    .then((res) => res.data.data);
+  return {
+    title: blogData.articleTitle,
+  };
+}
 
 export default async function Page({
   params,
@@ -15,7 +34,6 @@ export default async function Page({
         <Markdown articleId={Number(slug)} />
         <CopyrightNotice />
       </div>
-      <div></div>
     </>
   );
 }

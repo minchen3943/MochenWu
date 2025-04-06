@@ -1,4 +1,5 @@
 "use client";
+import config from "../../mcw-config.json";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,13 +18,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const linkList = [
-    { name: "首页", link: "/" },
-    { name: "博客", link: "/blog" },
-    { name: "留言", link: "/message" },
-    { name: "关于", link: "/about" },
-  ];
-
   return (
     <div
       className={`py-[1.5vh] transition-all duration-300 ${
@@ -40,7 +34,7 @@ export default function Navbar() {
         }`}
       >
         <div className="flex">
-          {linkList.map((item) => (
+          {config.RouteMap.map((item) => (
             <Link
               key={item.link}
               href={item.link}

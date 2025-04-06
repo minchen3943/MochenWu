@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @author 瞑尘
  * @description 评论实体类，映射数据库中的 mcw_comment 表。
  * 该类用于表示用户评论的数据模型，包含评论的各个字段及其验证规则。
- * @Date 2025-02-22 13:26:30
+ * @Date 2025-02-22
  */
 @Entity  // 表示这是一个JPA实体类，映射到数据库中的一张表
 @Table(name = "mcw_comment")  // 指定映射的表名为 mcw_comment

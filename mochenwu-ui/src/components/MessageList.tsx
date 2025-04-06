@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../mcw-config.json";
 import Loader from "./Loader";
+import LoaderAnimal from "./LoaderAnimal";
+import { set } from "react-hook-form";
 
 interface Comment {
   commentId: number;
@@ -16,6 +18,7 @@ interface Comment {
 }
 
 export default function MessageList() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [comments, setComments] = useState<Comment[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [maxPageNumber, setMaxPageNumber] = useState<number>(1);
@@ -37,9 +40,20 @@ export default function MessageList() {
 
   useEffect(() => {
     async function getCommentsByPage(pageNumber: number) {
-      const commentData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`,
-      );
+      const commentData = await axios
+        .get(
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`,
+        )
+        .catch((error) => {
+          console.error("获取评论失败：", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+      if (!commentData) {
+        setIsLoading(false);
+        return;
+      }
       const commentResponse = await commentData.data;
       if (commentResponse.code === 200) {
         setComments((comments) => {
@@ -82,6 +96,12 @@ export default function MessageList() {
 
   return (
     <div className="bg-slate-600、50 flex w-full flex-col gap-3">
+      {isLoading ? (
+        <div className="relative left-0 right-0 m-auto text-center">
+          加载中.....
+          <LoaderAnimal />
+        </div>
+      ) : null}
       {comments.map((comment) => (
         <div key={comment.commentId} className="my-1 h-auto w-full rounded-xl">
           <div className="mt-2 flex items-center gap-2">

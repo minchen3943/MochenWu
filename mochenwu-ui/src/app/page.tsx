@@ -1,6 +1,10 @@
-import AnimatedContent from "@/components/AnimatedContent";
+import FadeContent from "@/components/FadeContent";
 import StatusBar from "@/components/StatusBar";
 import "@/styles/homePage.scss";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: { absolute: "沫尘屋" } };
+
 export default async function page() {
   const welcome = ["W", "e", "l", "c", "o", "m", "e", ","];
   const emoji = ["ദ", "്", "ദ", "ി", "˶", "•", "̀", "֊", "•", "́", ")", "✧"];
@@ -126,7 +130,7 @@ export default async function page() {
                   </li>
                 ))}
               </ul>
-              <div className="ml-[0.5rem] flex rounded-lg p-1 hover:bg-[#d6c6e1a4]">
+              <div className="ml-[0.5rem] flex rounded-lg p-1 transition-colors duration-200 ease-in-out hover:bg-[#d6c6e1a4]">
                 {emoji.map((char, index) => (
                   <span
                     key={`emoji-${index}`}
@@ -183,19 +187,12 @@ export default async function page() {
             />
           </svg>
         </div>
-        <AnimatedContent
-          distance={50}
-          direction="vertical"
-          reverse={false}
-          config={{ tension: 50, friction: 25 }}
-          delay={1000}
-          initialOpacity={0.0}
-          animateOpacity={true}
-          scale={0.7}
-          threshold={0.1}
-        >
+        <FadeContent delay={750} className="hidden lg:block">
           <StatusBar />
-        </AnimatedContent>
+        </FadeContent>
+        <FadeContent delay={200} threshold={1} className="lg:hidden">
+          <StatusBar />
+        </FadeContent>
       </div>
     </>
   );

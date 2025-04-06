@@ -1,11 +1,16 @@
 {
-  "extends": ["development"],
+  "extends": [
+    "development"
+  ],
   "hints": {
     "compat-api/css": [
       "default",
       {
-        "ignore": ["scrollbar-width: thin"]
+        "ignore": [
+          "scrollbar-width: thin"
+        ]
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   }
 }

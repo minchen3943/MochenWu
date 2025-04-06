@@ -5,8 +5,8 @@ import "@/styles/Footer.scss";
 export default function Footer() {
   return (
     <div className="flex w-full flex-col border-t border-purple-300/50 bg-[#e6cfea72]">
-      <div className="flex h-fit w-full pt-5 font-sans text-2xl text-[#e9b5e4dc] lg:justify-normal lg:px-44">
-        <div className="flex h-fit w-fit flex-col items-start gap-1 lg:flex-row lg:gap-0">
+      <div className="flex h-fit w-full pt-1 font-sans text-2xl text-[#e9b5e4dc] lg:justify-normal lg:px-44 lg:pt-5">
+        <div className="flex h-fit w-fit flex-col items-start lg:flex-row lg:gap-0">
           <div className="relative">
             <span className="px-3 lg:p-0">Find us</span>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
               </li>
               <li className="size-[1.875rem] lg:size-8">
                 <a
-                  href="mailto:minchen3943@outlook.com"
+                  href="mailto:i@mochenwu.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Email"
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center pt-1 lg:p-0">
             <span className="px-3">|</span>
             <span className="pt-1 text-lg font-normal">To 沫鸯</span>
             <ul className="inline-flex gap-3 pl-3">

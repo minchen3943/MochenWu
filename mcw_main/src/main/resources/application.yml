@@ -1,44 +1,34 @@
 server:
-  port: 8080
+  port: 8080  # 服务器端口号
+
 spring:
   jpa:
-    open-in-view: false
+    open-in-view: false  # 禁用 Open Session in View，避免持久化上下文在视图渲染时仍然打开
   datasource:
-    url: jdbc:mysql://localhost:3306/mochen_wu?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: minchenww7
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mochen_wu?useUnicode=true&characterEncoding=UTF-8  # 数据库连接 URL
+    username: root  # 数据库用户名
+    password: minchenww7  # 数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver  # 数据库驱动类名
   servlet:
     multipart:
-      max-file-size: 5MB
-      max-request-size: 50MB
+      max-file-size: 5MB  # 单个上传文件的最大大小
+      max-request-size: 50MB  # 单次请求的最大大小
   web:
     resources:
       chain:
-        cache: true
-        compressed: true
+        cache: true  # 启用资源链缓存
+        compressed: true  # 启用资源压缩
       cache:
-        period: 60s
+        period: 60s  # 资源缓存时间，单位为秒
         cachecontrol:
-          max-age: 60
-          cache-public: true
-
-logging:
-  file:
-    path: log
-  level:
-    org:
-      springframework:
-        web:
-          filter:
-            CommonsRequestLoggingFilter: DEBUG
+          max-age: 60  # 缓存控制的最大存活时间，单位为秒
+          cache-public: true  # 指定缓存是公共的
 
 
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+# PageHelper 配置（核心参数必须指定）
 pagehelper:
   reasonable: false
   defaultCount: true
-
+  dialect: mysql

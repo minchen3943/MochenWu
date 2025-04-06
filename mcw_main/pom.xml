@@ -2,41 +2,74 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 项目对象模型（POM）版本 -->
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父项目配置 -->
     <parent>
+        <!-- 父项目的组ID -->
         <groupId>com.mochenwu</groupId>
+        <!-- 父项目的构件ID -->
         <artifactId>MochenWu</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <!-- 父项目的版本 -->
+        <version>1.0.0</version>
     </parent>
 
+    <!-- 当前项目的构件ID -->
     <artifactId>mcw_main</artifactId>
+    <!-- 当前项目的版本 -->
+    <version>1.0.0</version>
 
+    <!-- 项目属性配置 -->
     <properties>
+        <!-- 编译源代码的JDK版本 -->
         <maven.compiler.source>21</maven.compiler.source>
+        <!-- 编译目标字节码的JDK版本 -->
         <maven.compiler.target>21</maven.compiler.target>
+        <!-- 项目构建过程中的源编码格式 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- 项目依赖配置 -->
     <dependencies>
+        <!-- mcw_comment 依赖 -->
         <dependency>
+            <!-- 依赖的组ID -->
             <groupId>com.mochenwu</groupId>
+            <!-- 依赖的构件ID -->
             <artifactId>mcw_comment</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <!-- 依赖的版本 -->
+            <version>1.0.0</version>
         </dependency>
+
+        <!-- mcw_article 依赖 -->
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_article</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
+
+        <!-- mcw_data 依赖 -->
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_data</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
 
+        <!-- Spring Boot Actuator 依赖 -->
         <dependency>
+            <!-- 依赖的组ID -->
             <groupId>org.springframework.boot</groupId>
+            <!-- 依赖的构件ID -->
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

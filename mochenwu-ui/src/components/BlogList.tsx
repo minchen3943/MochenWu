@@ -5,6 +5,7 @@ import { Link } from "next-view-transitions";
 import config from "../../mcw-config.json";
 import Loader from "./Loader";
 import axios from "axios";
+import LoaderAnimal from "./LoaderAnimal";
 
 interface Article {
   articleId: number;
@@ -19,6 +20,7 @@ interface Article {
 export default function BlogList() {
   const [articleArray, setArticleArray] = useState<Article[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [maxPageNumber, setMaxPageNumber] = useState<number>(1);
   let pageSize = 9;
 
@@ -36,11 +38,21 @@ export default function BlogList() {
 
   useEffect(() => {
     async function getArticleByPage(pageNumber: number) {
-      const articleData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page?page=${pageNumber}&pageSize=${pageSize}`,
-      );
+      const articleData = await axios
+        .get(
+          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/page?page=${pageNumber}&pageSize=${pageSize}`,
+        )
+        .catch((error) => {
+          console.error("获取文章失败：", error);
+          setIsLoading(false);
+        });
+      if (!articleData) {
+        setIsLoading(false);
+        return;
+      }
       const article = await articleData.data;
       if (article.code === 200) {
+        setIsLoading(false);
         setArticleArray((articleArray) => {
           const filteredNewArticles = article.data.filter(
             (newArticle: Article) =>
@@ -52,6 +64,7 @@ export default function BlogList() {
           return [...articleArray, ...filteredNewArticles];
         });
       } else {
+        setIsLoading(false);
         console.error("获取文章失败：", article);
       }
     }
@@ -80,6 +93,17 @@ export default function BlogList() {
   }
   return (
     <div className="bg-slate-600、50 flex w-full flex-col">
+      {isLoading ? (
+        <div className="relative left-0 right-0 m-auto text-center">
+          加载中.....
+          <LoaderAnimal />
+        </div>
+      ) : null}
+      {!isLoading && !articleArray?.length ? (
+        <div className="relative left-0 right-0 m-auto text-red-600">
+          加载错误，数据为空
+        </div>
+      ) : null}
       {articleArray.map((article) => (
         <Link
           href={`/blog/${article.articleId}`}

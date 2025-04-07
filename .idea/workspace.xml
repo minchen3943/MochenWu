@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00c14a0d-f14f-4bcf-a636-c2869a88fe55" name="更改" comment="feat and fix">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,13 +114,13 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "F:/Code/MochenWu/mcw_article/src/main/java/com/mochenwu",
-    "last_opened_file_path": "F:/Code/MochenWu/mcw_data/src/main/java/com/mochenwu/data/model",
+    "last_opened_file_path": "F:/Code/MochenWu/pom.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "项目",
+    "project.structure.last.edited": "全局库",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -147,6 +146,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="mcw_article" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="mcw_article" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="MochenWuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="mcw_main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mochenwu.main.MochenWuApplication" />
@@ -219,6 +229,7 @@
       <workItem from="1744030394028" duration="957000" />
       <workItem from="1744031730944" duration="244000" />
       <workItem from="1744031992482" duration="2629000" />
+      <workItem from="1744036101765" duration="57000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 添加后端">
       <option name="closed" value="true" />

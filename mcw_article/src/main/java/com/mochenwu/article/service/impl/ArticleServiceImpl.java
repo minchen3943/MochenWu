@@ -57,7 +57,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
         mcwArticle.setArticleVisitorCount(0);
         mcwArticle.setArticleStatus(0);
         articleMapper.addArticle(mcwArticle);
-        logger.info("Article added {articleId:{}}", mcwArticle.getArticleId());
+        logger.info("文章添加成功 articleId:{}", mcwArticle.getArticleId());
     }
 
     /**
@@ -74,7 +74,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     @Override
     public McwArticle updateArticle(McwArticle mcwArticle) {
         articleMapper.updateArticle(mcwArticle);
-        logger.info("Article updated {articleId:{}}", mcwArticle.getArticleId());
+        logger.info("文章更新成功 articleId:{}", mcwArticle.getArticleId());
         return articleMapper.getArticleById(mcwArticle.getArticleId());
     }
 
@@ -90,7 +90,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
      */
     @Override
     public List<McwArticle> getAllArticle() {
-        logger.info("Article query all");
+        logger.info("查询所有文章成功");
         return articleMapper.getAllVisibleArticle();
     }
 
@@ -138,7 +138,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
      */
     @Override
     public McwArticle getArticleById(int articleId) {
-        logger.info("Article query by id {}", articleId);
+        logger.info("查询文章成功 articleId:{}", articleId);
         return articleMapper.getArticleById(articleId);
     }
 
@@ -155,7 +155,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
     @Override
     public void delArticleById(int articleId) {
         articleMapper.delArticleById(articleId);
-        logger.info("Article del {articleId:{}}", articleId);
+        logger.info("删除文章成功 articleId:{}", articleId);
     }
 
     /**

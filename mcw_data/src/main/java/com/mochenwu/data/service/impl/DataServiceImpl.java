@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mochenwu.data.mapper.DataMapper;
 import com.mochenwu.data.model.McwData;
 import com.mochenwu.data.service.DataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements DataService {
+
+    /**
+     * 日志记录器
+     */
+    private static final Logger logger = LoggerFactory.getLogger(DataServiceImpl.class);
+
 
     /**
      * 数据统计Mapper接口
@@ -40,6 +48,7 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
     public int addVisitorCount() {
         int visitorCount = dataMapper.selectVisitorCount();
         dataMapper.addOneVisitorCount(visitorCount + 1);
+        logger.info("增加访问人数，更新后为 {}", visitorCount);
         return dataMapper.selectVisitorCount();
     }
 
@@ -50,6 +59,7 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
      */
     @Override
     public int getVisitorCount() {
+        logger.info("获取访问人数: {}", dataMapper.selectVisitorCount());
         return dataMapper.selectVisitorCount();
     }
 
@@ -62,6 +72,7 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
     public Integer addLikeCount() {
         int likeCount = dataMapper.selectLikeCount();
         dataMapper.addOneLikeCount(likeCount + 1);
+        logger.info("增加喜欢人数，更新后为: {}", likeCount);
         return dataMapper.selectLikeCount();
     }
 
@@ -72,6 +83,7 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, McwData> implements
      */
     @Override
     public Integer getLikeCount() {
+        logger.info("获取喜欢人数: {}", dataMapper.selectLikeCount());
         return dataMapper.selectLikeCount();
     }
 }

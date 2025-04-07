@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <ViewTransitions>
-      <Script>
+      <Script id="info">
         {`(function(){
   console.info(
     "%c 沫尘屋 V1.0.0 %c https://mochenwu.com",

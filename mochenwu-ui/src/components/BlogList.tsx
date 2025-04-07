@@ -22,7 +22,7 @@ export default function BlogList() {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [maxPageNumber, setMaxPageNumber] = useState<number>(1);
-  let pageSize = 9;
+  const pageSize = 9;
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {

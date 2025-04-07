@@ -1,6 +1,6 @@
 {
   "server": {
-    "axios": { "protocol": "http", "host": "192.168.5.3", "port": "8080" }
+    "axios": { "protocol": "http", "host": "mochenwu", "port": "8080" }
   },
   "RouteMap": [
     {

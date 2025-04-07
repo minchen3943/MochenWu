@@ -5,7 +5,6 @@ import axios from "axios";
 import config from "../../mcw-config.json";
 import Loader from "./Loader";
 import LoaderAnimal from "./LoaderAnimal";
-import { set } from "react-hook-form";
 
 interface Comment {
   commentId: number;
@@ -22,7 +21,7 @@ export default function MessageList() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [maxPageNumber, setMaxPageNumber] = useState<number>(1);
-  let pageSize = 10;
+  const pageSize = 10;
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {

@@ -58,6 +58,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
       })
       .finally(() => setLoading(false));
   }, [articleId]);
+
   useEffect(() => {
     axios
       .put(
@@ -83,7 +84,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
           throw new Error("文章数据无效");
         }
       });
-  }, []);
+  }, [articleId]);
 
   return (
     <>
@@ -151,7 +152,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
             ]}
             rehypePlugins={[rehypeRaw, rehypeStringify, rehypeHighlight]}
             components={{
-              a: ({ node, href, children, ...props }) => {
+              a: ({ href, children, ...props }) => {
                 return (
                   <a
                     href={href}
@@ -163,7 +164,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   </a>
                 );
               },
-              img: ({ node, src, alt, ...props }) => {
+              img: ({ src, ...props }) => {
                 return <img src={src} alt="图片加载异常" {...props} />;
               },
               code({ className, children }) {

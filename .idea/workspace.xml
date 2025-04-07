@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00c14a0d-f14f-4bcf-a636-c2869a88fe55" name="更改" comment="feat and fix">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyBatisCodeHelperDatasource.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MybatisCodeHelperBatsLog.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-02-21T230359.500.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-02-21T230401.500.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_article/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_article/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_comment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_comment/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_data/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_data/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_general/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_general/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_main/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_main/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcw_main/src/main/java/com/mochenwu/main/MochenWuApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_main/src/main/java/com/mochenwu/main/MochenWuApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,17 +140,29 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "F:/Code/MochenWu/mcw_article/src/main/java/com/mochenwu",
+<<<<<<< HEAD
     "last_opened_file_path": "F:/Code/MochenWu/pom.xml",
+=======
+    "last_opened_file_path": "F:/Code/MochenWu/mcw_data/src/main/java/com/mochenwu/data/model",
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
     "project.structure.last.edited": "全局库",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "consents",
+=======
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     "ts.external.directory.path": "F:\\Code\\MochenWu\\mochenwu-ui\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -146,6 +184,7 @@
     </key>
   </component>
   <component name="RunManager">
+<<<<<<< HEAD
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mcw_article" />
       <method v="2">
@@ -157,6 +196,8 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     <configuration name="MochenWuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="mcw_main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mochenwu.main.MochenWuApplication" />
@@ -228,8 +269,12 @@
       <workItem from="1744030155150" duration="15000" />
       <workItem from="1744030394028" duration="957000" />
       <workItem from="1744031730944" duration="244000" />
+<<<<<<< HEAD
       <workItem from="1744031992482" duration="2629000" />
       <workItem from="1744036101765" duration="57000" />
+=======
+      <workItem from="1744031992482" duration="130000" />
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     </task>
     <task id="LOCAL-00001" summary="feat: 添加后端">
       <option name="closed" value="true" />
@@ -255,6 +300,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742818881085</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00004" summary="feat and fix">
       <option name="closed" value="true" />
       <created>1744032274845</created>
@@ -264,6 +310,9 @@
       <updated>1744032274845</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+=======
+    <option name="localTasksCounter" value="4" />
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

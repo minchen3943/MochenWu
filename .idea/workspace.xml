@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="00c14a0d-f14f-4bcf-a636-c2869a88fe55" name="更改" comment="feat and fix">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 =======
+=======
+>>>>>>> parent of cc91e01 (Delete .idea directory)
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/MyBatisCodeHelperDatasource.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/MybatisCodeHelperBatsLog.xml" beforeDir="false" />
@@ -31,6 +34,9 @@
       <change beforePath="$PROJECT_DIR$/mcw_main/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_main/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mcw_main/src/main/java/com/mochenwu/main/MochenWuApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mcw_main/src/main/java/com/mochenwu/main/MochenWuApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> parent of cc91e01 (Delete .idea directory)
+=======
 >>>>>>> parent of cc91e01 (Delete .idea directory)
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +147,11 @@
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "F:/Code/MochenWu/mcw_article/src/main/java/com/mochenwu",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "last_opened_file_path": "F:/Code/MochenWu/pom.xml",
+=======
+    "last_opened_file_path": "F:/Code/MochenWu/mcw_data/src/main/java/com/mochenwu/data/model",
+>>>>>>> parent of cc91e01 (Delete .idea directory)
 =======
     "last_opened_file_path": "F:/Code/MochenWu/mcw_data/src/main/java/com/mochenwu/data/model",
 >>>>>>> parent of cc91e01 (Delete .idea directory)
@@ -151,17 +161,23 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "project.structure.last.edited": "全局库",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "consents",
 =======
+=======
+>>>>>>> parent of cc91e01 (Delete .idea directory)
     "project.structure.last.edited": "项目",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+<<<<<<< HEAD
+>>>>>>> parent of cc91e01 (Delete .idea directory)
+=======
 >>>>>>> parent of cc91e01 (Delete .idea directory)
     "ts.external.directory.path": "F:\\Code\\MochenWu\\mochenwu-ui\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
@@ -185,6 +201,7 @@
   </component>
   <component name="RunManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mcw_article" />
       <method v="2">
@@ -196,6 +213,8 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> parent of cc91e01 (Delete .idea directory)
 =======
 >>>>>>> parent of cc91e01 (Delete .idea directory)
     <configuration name="MochenWuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -270,8 +289,12 @@
       <workItem from="1744030394028" duration="957000" />
       <workItem from="1744031730944" duration="244000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1744031992482" duration="2629000" />
       <workItem from="1744036101765" duration="57000" />
+=======
+      <workItem from="1744031992482" duration="130000" />
+>>>>>>> parent of cc91e01 (Delete .idea directory)
 =======
       <workItem from="1744031992482" duration="130000" />
 >>>>>>> parent of cc91e01 (Delete .idea directory)
@@ -301,6 +324,7 @@
       <updated>1742818881085</updated>
     </task>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <task id="LOCAL-00004" summary="feat and fix">
       <option name="closed" value="true" />
       <created>1744032274845</created>
@@ -310,6 +334,9 @@
       <updated>1744032274845</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+=======
+    <option name="localTasksCounter" value="4" />
+>>>>>>> parent of cc91e01 (Delete .idea directory)
 =======
     <option name="localTasksCounter" value="4" />
 >>>>>>> parent of cc91e01 (Delete .idea directory)

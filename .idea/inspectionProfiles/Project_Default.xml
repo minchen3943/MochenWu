@@ -65,9 +65,12 @@
     <inspection_tool class="AlibabaUseRightCaseForDateFormat" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <inspection_tool class="JavadocDeclaration" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ADDITIONAL_TAGS" value="date" />
     </inspection_tool>
+=======
+>>>>>>> parent of cc91e01 (Delete .idea directory)
 =======
 >>>>>>> parent of cc91e01 (Delete .idea directory)
     <inspection_tool class="MapOrSetKeyShouldOverrideHashCodeEquals" enabled="true" level="WARNING" enabled_by_default="true" />

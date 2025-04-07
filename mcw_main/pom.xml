@@ -34,11 +34,8 @@
     <dependencies>
         <!-- mcw_comment 依赖 -->
         <dependency>
-            <!-- 依赖的组ID -->
             <groupId>com.mochenwu</groupId>
-            <!-- 依赖的构件ID -->
             <artifactId>mcw_comment</artifactId>
-            <!-- 依赖的版本 -->
             <version>1.0.0</version>
         </dependency>
 

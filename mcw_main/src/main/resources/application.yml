@@ -29,4 +29,3 @@ spring:
 pagehelper:
   reasonable: false
   defaultCount: true
-  dialect: mysql

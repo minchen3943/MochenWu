@@ -106,32 +106,13 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!--阿里fastJson-->
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>2.0.53</version>
-        </dependency>
-
-
     </dependencies>
-
-    <!-- 依赖管理 -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- 子模块 mcw_main 的依赖 -->
-            <dependency>
-                <groupId>com.mochenwu</groupId>
-                <artifactId>mcw_main</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <!-- 子模块 mcw_comment 的依赖 -->
-            <dependency>
-                <groupId>com.mochenwu</groupId>
-                <artifactId>mcw_comment</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

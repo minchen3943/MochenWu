@@ -15,6 +15,7 @@
     <artifactId>mcw_comment</artifactId>
     <!-- 当前模块的版本 -->
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <!-- 编译源代码的 JDK 版本 -->

@@ -14,19 +14,12 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2025/04/06
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {
-        "com.mochenwu.comment",
-        "com.mochenwu.article",
-        "com.mochenwu.data",
-        "com.mochenwu.main.config"
-})
-@MapperScan(basePackages = {
-        "com.mochenwu.comment.mapper",
-        "com.mochenwu.article.mapper",
-        "com.mochenwu.data.mapper"
-})
+@ComponentScan("com.mochenwu.comment")
+@ComponentScan("com.mochenwu.article")
+@ComponentScan("com.mochenwu.data")
+@ComponentScan("com.mochenwu.main.config")
+@MapperScan({"com.mochenwu.comment.mapper","com.mochenwu.article.mapper", "com.mochenwu.data.mapper"})
 public class MochenWuApplication {
-
     /**
      * 应用程序的主入口方法。
      *

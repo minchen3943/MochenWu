@@ -19,6 +19,7 @@
     <artifactId>mcw_main</artifactId>
     <!-- 当前项目的版本 -->
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <!-- 项目属性配置 -->
     <properties>
@@ -61,12 +62,5 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

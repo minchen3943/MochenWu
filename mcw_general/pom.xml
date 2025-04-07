@@ -19,7 +19,7 @@
     <artifactId>mcw_general</artifactId>
     <!-- 当前项目的版本 -->
     <version>1.0.0</version>
-
+    <packaging>jar</packaging>
     <!-- 项目属性配置 -->
     <properties>
         <!-- 编译源代码的JDK版本 -->

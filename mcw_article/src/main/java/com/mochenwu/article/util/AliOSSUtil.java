@@ -31,6 +31,10 @@ import java.util.UUID;
 public class AliOSSUtil {
 
     /**
+     * 日志记录器
+     */
+    private static final Logger logger = LoggerFactory.getLogger(AliOSSUtil.class);
+    /**
      * 阿里云OSS服务的访问域名（Endpoint）
      */
     private static final String ENDPOINT = "https://oss-cn-chengdu.aliyuncs.com";
@@ -75,17 +79,12 @@ public class AliOSSUtil {
         clientBuilderConfiguration.setSignatureVersion(SignVersion.V4);
 
         // 创建OSSClient实例
-        OSS ossClient = OSSClientBuilder.create()
-                .endpoint(ENDPOINT)
-                .credentialsProvider(credentialsProvider)
-                .clientConfiguration(clientBuilderConfiguration)
-                .region(REGION)
-                .build();
+        OSS ossClient = OSSClientBuilder.create().endpoint(ENDPOINT).credentialsProvider(credentialsProvider).clientConfiguration(clientBuilderConfiguration).region(REGION).build();
 
         // 上传文件到指定Bucket中
         ossClient.putObject(BUCKET_NAME, ossModel.getFileName(), inputStream);
 
-        // 生成文件访问URL，格式为：https://{bucket}.{endpoint}/{fileName}
+        // 生成文件访问URL
         ossModel.setUrl(ENDPOINT.split("//")[0] + "//" + BUCKET_NAME + "." + ENDPOINT.split("//")[1] + "/" + ossModel.getFileName());
         logger.info("文件上传阿里云OSS成功 {url:{}}", ossModel.getUrl());
 
@@ -114,24 +113,14 @@ public class AliOSSUtil {
         clientBuilderConfiguration.setSignatureVersion(SignVersion.V4);
 
         // 创建OSSClient实例
-        OSS ossClient = OSSClientBuilder.create()
-                .endpoint(ENDPOINT)
-                .credentialsProvider(credentialsProvider)
-                .clientConfiguration(clientBuilderConfiguration)
-                .region(REGION)
-                .build();
+        OSS ossClient = OSSClientBuilder.create().endpoint(ENDPOINT).credentialsProvider(credentialsProvider).clientConfiguration(clientBuilderConfiguration).region(REGION).build();
 
         try {
             // 删除指定Bucket中的文件
             ossClient.deleteObject(BUCKET_NAME, objectName);
         } catch (OSSException oe) {
             // 捕获OSSException异常并输出错误详细信息
-            System.out.println("Caught an OSSException, which means your request made it to OSS, "
-                    + "but was rejected with an error response for some reason.");
-            System.out.println("Error Message:" + oe.getErrorMessage());
-            System.out.println("Error Code:" + oe.getErrorCode());
-            System.out.println("Request ID:" + oe.getRequestId());
-            System.out.println("Host ID:" + oe.getHostId());
+            logger.error("Caught an OSSException, which means your request made it to OSS,but was rejected with an error response for some reason.\nError Message: {} \nError Code: {} \nRequest ID: {} \nHost ID: {}", oe.getErrorMessage(), oe.getErrorCode(), oe.getRequestId(), oe.getHostId());
         } finally {
             // 关闭OSSClient
             ossClient.shutdown();

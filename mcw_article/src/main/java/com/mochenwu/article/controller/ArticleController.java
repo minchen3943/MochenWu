@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * 类描述：文章管理控制器
  * <p>负责文章的新增、删除、修改、查询等操作</p>
+ *
  * @author 瞑尘
  * @date 2025-04-06
  */
@@ -51,7 +52,11 @@ public class ArticleController {
      */
     @PostMapping("/add")
     public ResponseEntity<ApiResponse<McwArticle>> addArticle(@RequestParam("file") MultipartFile file, @ModelAttribute McwArticle mcwArticle) {
-        if (!(mcwArticle.getArticleTitle() == null) && !(file.isEmpty()) && !(file.getContentType() == null) && file.getContentType().startsWith("text/markdown")) {
+        if (file == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "提交文章为空", null));
+        }
+        String contentType = file.getContentType();
+        if (mcwArticle.getArticleTitle() != null && !file.isEmpty() && contentType != null && contentType.startsWith("text/markdown")) {
             try {
                 AliOSSModel output = AliOSSUtil.upload(file);
                 mcwArticle.setArticleUrl(output.getUrl());
@@ -59,15 +64,12 @@ public class ArticleController {
                 articleService.addArticle(mcwArticle);
                 return ResponseEntity.ok(new ApiResponse<>(200, "添加文章成功", mcwArticle));
             } catch (ValidationException e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "提交文章有误", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "提交文章有误", null));
         }
     }
 
@@ -90,15 +92,12 @@ public class ArticleController {
                 articleService.delArticleById(articleId);
                 return ResponseEntity.ok(new ApiResponse<>(200, "删除文章成功", null));
             } catch (ValidationException e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(404, "文章id:" + articleId + " 不存在", null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(404, "文章id:" + articleId + " 不存在", null));
         }
     }
 
@@ -118,15 +117,12 @@ public class ArticleController {
             try {
                 return ResponseEntity.ok(new ApiResponse<>(200, "修改文章成功", articleService.updateArticle(mcwArticle)));
             } catch (ValidationException e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "修改文章需要articleId", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "修改文章需要articleId", null));
         }
     }
 
@@ -148,15 +144,12 @@ public class ArticleController {
                 article.setArticleVisitorCount(article.getArticleVisitorCount() + 1);
                 return ResponseEntity.ok(new ApiResponse<>(200, "阅读人数修改成功", articleService.updateArticle(article)));
             } catch (ValidationException e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "输入数据无效: " + e.getMessage(), null));
             } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
             }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(400, "文章id:" + articleId + " 不存在", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(400, "文章id:" + articleId + " 不存在", null));
         }
     }
 
@@ -175,8 +168,7 @@ public class ArticleController {
             List<McwArticle> articles = articleService.getAllArticle();
             return ResponseEntity.ok(new ApiResponse<>(200, "获取所有可见文章成功", articles));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -202,8 +194,7 @@ public class ArticleController {
         } catch (ValidationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -228,8 +219,7 @@ public class ArticleController {
         } catch (ValidationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 
@@ -251,8 +241,7 @@ public class ArticleController {
         } catch (ValidationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(500, "服务器错误", null));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse<>(500, "服务器错误: " + e.getMessage(), null));
         }
     }
 }

@@ -131,7 +131,6 @@ public class CommentController {
      * @date 2025-02-21
      */
     @PostMapping("/add")
-    @ResponseBody
     public ResponseEntity<ApiResponse<McwComment>> setComment(@RequestBody McwComment mcwComment) {
         if (mcwComment != null) {
             try {

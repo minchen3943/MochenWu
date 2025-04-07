@@ -121,7 +121,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, McwArticle> i
         } catch (Exception e) {
             // 捕获异常并抛出运行时异常
             logger.error("分页查询文章时发生错误：{}", e.getMessage());
-            throw new RuntimeException("分页查询文章时发生错误：", e);
+            throw new IllegalArgumentException("分页查询文章时发生错误：", e);
         }
     }
 

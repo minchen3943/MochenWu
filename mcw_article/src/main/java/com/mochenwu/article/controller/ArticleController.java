@@ -4,7 +4,7 @@ import com.mochenwu.article.model.McwArticle;
 import com.mochenwu.article.service.ArticleService;
 import com.mochenwu.article.util.AliOSSModel;
 import com.mochenwu.article.util.AliOSSUtil;
-import com.mochenwu.general.response.ApiResponse;
+import com.mochenwu.article.response.ApiResponse;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

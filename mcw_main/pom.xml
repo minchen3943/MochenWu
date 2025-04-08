@@ -12,13 +12,13 @@
         <!-- 父项目的构件ID -->
         <artifactId>MochenWu</artifactId>
         <!-- 父项目的版本 -->
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <!-- 当前项目的构件ID -->
     <artifactId>mcw_main</artifactId>
     <!-- 当前项目的版本 -->
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <!-- 项目属性配置 -->
@@ -37,21 +37,21 @@
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_comment</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- mcw_article 依赖 -->
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_article</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- mcw_data 依赖 -->
         <dependency>
             <groupId>com.mochenwu</groupId>
             <artifactId>mcw_data</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- Spring Boot Actuator 依赖 -->
@@ -63,4 +63,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.mochenwu.main.MochenWuApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

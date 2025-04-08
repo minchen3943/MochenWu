@@ -9,13 +9,13 @@
     <parent>
         <groupId>com.mochenwu</groupId>
         <artifactId>MochenWu</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <!-- 当前项目的 artifactId -->
     <artifactId>mcw_data</artifactId>
     <!-- 当前项目的版本 -->
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -34,12 +34,6 @@
             <artifactId>spring-boot-starter-validation</artifactId>
             <!-- 参考：https://spring.io/projects/spring-boot -->
         </dependency>
-        <!-- 自定义通用工具包依赖 -->
-        <dependency>
-            <groupId>com.mochenwu</groupId>
-            <artifactId>mcw_general</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
+
     </dependencies>
 </project>

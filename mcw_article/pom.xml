@@ -9,13 +9,13 @@
     <parent>
         <groupId>com.mochenwu</groupId> <!-- 父项目的 groupId -->
         <artifactId>MochenWu</artifactId> <!-- 父项目的 artifactId -->
-        <version>1.0.0</version> <!-- 父项目的版本 -->
+        <version>1.0.1</version> <!-- 父项目的版本 -->
     </parent>
 
     <!-- 当前项目的 artifactId -->
     <artifactId>mcw_article</artifactId>
     <!-- 当前项目的版本 -->
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -71,14 +71,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
             <!-- 参考：https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#starter-validation -->
-        </dependency>
-
-        <!-- 自定义通用工具包依赖 -->
-        <dependency>
-            <groupId>com.mochenwu</groupId>
-            <artifactId>mcw_general</artifactId>
-            <version>1.0.0</version>
-            <!-- 参考：https://github.com/mochenwu/mcw_general -->
         </dependency>
 
         <!-- MyBatis 分页插件依赖 -->

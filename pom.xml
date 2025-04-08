@@ -20,7 +20,7 @@
     <!-- 项目基本信息 -->
     <groupId>com.mochenwu</groupId> <!-- 项目组 ID -->
     <artifactId>MochenWu</artifactId> <!-- 项目 ID -->
-    <version>1.0.0</version> <!-- 项目版本 -->
+    <version>1.0.1</version> <!-- 项目版本 -->
     <packaging>pom</packaging> <!-- 打包类型为 POM -->
     <url/> <!-- 项目主页 URL -->
 
@@ -45,7 +45,6 @@
     <!-- 子模块配置 -->
     <modules>
         <module>mcw_main</module>
-        <module>mcw_general</module>
         <module>mcw_comment</module>
         <module>mcw_data</module>
         <module>mcw_article</module>
@@ -107,12 +106,5 @@
         </dependency>
 
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

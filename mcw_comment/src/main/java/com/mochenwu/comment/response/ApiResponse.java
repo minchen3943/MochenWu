@@ -1,4 +1,4 @@
-package com.mochenwu.general.response;
+package com.mochenwu.comment.response;
 
 /**
  * 通用 API 响应封装类。

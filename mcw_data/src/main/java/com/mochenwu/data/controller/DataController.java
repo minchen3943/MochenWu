@@ -1,7 +1,7 @@
 package com.mochenwu.data.controller;
 
 import com.mochenwu.data.service.DataService;
-import com.mochenwu.general.response.ApiResponse;
+import com.mochenwu.data.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

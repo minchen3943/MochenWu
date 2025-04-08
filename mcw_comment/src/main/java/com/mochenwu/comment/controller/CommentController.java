@@ -2,7 +2,7 @@ package com.mochenwu.comment.controller;
 
 import com.mochenwu.comment.model.McwComment;
 import com.mochenwu.comment.service.CommentService;
-import com.mochenwu.general.response.ApiResponse;
+import com.mochenwu.comment.response.ApiResponse;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

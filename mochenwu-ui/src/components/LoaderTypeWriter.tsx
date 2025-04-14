@@ -2,9 +2,14 @@
 import React from "react";
 import styled from "styled-components";
 
+/**
+ * 打字机加载动画组件
+ * @returns {JSX.Element} 返回加载动画的 JSX 元素
+ */
 const LoaderTypeWriter = () => {
   return (
     <StyledWrapper>
+      {/* 打字机动画结构 */}
       <div className="typewriter">
         <div className="slide">
           <i />
@@ -16,6 +21,9 @@ const LoaderTypeWriter = () => {
   );
 };
 
+/**
+ * 样式定义
+ */
 const StyledWrapper = styled.div`
   .typewriter {
     --blue: #5c86ff;

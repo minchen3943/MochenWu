@@ -7,8 +7,8 @@ import config from "../../mcw-config.json";
 import axios from "axios";
 
 export default function StatusBar() {
-  const [visitors, setVisitors] = useState("");
-  const [likes, setLikes] = useState("");
+  const [visitors, setVisitors] = useState("loading");
+  const [likes, setLikes] = useState("loading");
   const [likeEdit, setLikeEdit] = useState(true);
   const [buttonClick, setButtonClick] = useState(false);
   const [likeColor, setLikeColor] = useState(false);
@@ -29,29 +29,29 @@ export default function StatusBar() {
         const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
         if (lastVisitTime && currentTime - lastVisitTime < 30000) {
           const visitorData = await axios.get(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/get`,
+            `${config.server.axios.protocol}://${config.server.axios.host}/api/data/visitor/get`,
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
             setVisitors(visitor.data);
             localStorage.setItem("lastVisitTime", currentTime.toString());
           } else {
-            setVisitors("null");
+            setVisitors("error");
           }
         } else {
           const visitorData = await axios.put(
-            `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/visitor/add`,
+            `${config.server.axios.protocol}://${config.server.axios.host}/api/data/visitor/add`,
           );
           const visitor = await visitorData.data;
           if (visitor.code === 200) {
             setVisitors(visitor.data);
             localStorage.setItem("lastVisitTime", currentTime.toString());
           } else {
-            setVisitors("null");
+            setVisitors("error");
           }
         }
         const likeData = await axios.get(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/get`,
+          `${config.server.axios.protocol}://${config.server.axios.host}/api/data/like/get`,
         );
         const like = await likeData.data;
         setLikes(like.data);
@@ -67,7 +67,7 @@ export default function StatusBar() {
     if (likeEdit) {
       try {
         const response = await axios.put(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/data/like/add`,
+          `${config.server.axios.protocol}://${config.server.axios.host}/api/data/like/add`,
         );
         const data = await response.data;
         if (data.code === 200) {

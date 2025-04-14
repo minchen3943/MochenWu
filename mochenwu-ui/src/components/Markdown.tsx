@@ -12,16 +12,34 @@ import config from "../../mcw-config.json";
 import "highlight.js/styles/github.css";
 import "@/styles/markdown.scss";
 import axios from "axios";
+import cos from "./utils/TencentCOS";
+
+interface ArticleData {
+  articleTitle: string;
+  articleDate: string;
+  articleVisitorCount: string;
+  articleBucket: string;
+  articleRegion: string;
+  articleKey: string;
+}
+interface COSParam {
+  Bucket: string;
+  Region: string;
+  Key: string;
+  ServerSideEncryption: string;
+}
 
 const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
-  const [blogTitle, setBlogTitle] = useState<string | null>(null);
-  const [blogTime, setBlogTime] = useState<string | null>(null);
-  const [blogVisitorCount, setBlogVisitorCount] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+  const [blogMeta, setBlogMeta] = useState<{
+    title: string | null;
+    time: string | null;
+    visitorCount: string | null;
+  }>({ title: null, time: null, visitorCount: null });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  function formatDate(dateString: string) {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -29,68 +47,108 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
     const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
     const weekday = weekdays[date.getDay()];
     return `${year}年${month}月${day}日 星期${weekday}`;
-  }
+  };
 
-  useEffect(() => {
-    setLoading(true);
-
-    axios
-      .get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${articleId}`,
-      )
-      .then((response) => response.data)
-      .then(async (data) => {
-        if (data.code === 200 && data.data?.articleUrl) {
-          const response = await axios.get(data.data.articleUrl);
-          const markdownContent = response.data;
-          setBlogTitle(data.data?.articleTitle);
-          setBlogTime(formatDate(data.data?.articleDate));
-          setBlogVisitorCount(data.data?.articleVisitorCount);
-          return setBlogContent(markdownContent);
-        } else {
-          throw new Error("文章数据无效");
-        }
-      })
-      .catch((error) => {
-        console.error("加载文章失败:", error);
-        setError(true);
-        setBlogContent("无法加载文章内容");
-      })
-      .finally(() => setLoading(false));
-  }, [articleId]);
-
-  useEffect(() => {
-    axios
-      .put(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/visitorAdd`,
-        {},
-        {
-          params: { articleId },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      )
-      .then((response) => response.data)
-      .then(async (data) => {
-        if (data.code === 200 && data.data?.articleUrl) {
-          const response = await axios.get(data.data.articleUrl);
-          const markdownContent = response.data;
-          setBlogTitle(data.data?.articleTitle);
-          setBlogTime(formatDate(data.data?.articleDate));
-          setBlogVisitorCount(data.data?.articleVisitorCount);
-          return setBlogContent(markdownContent);
-        } else {
-          throw new Error("文章数据无效");
-        }
+  const fetchCOSContent = async (Parm: COSParam) => {
+    try {
+      const { Bucket, Region, Key } = Parm;
+      const response = await cos.getObject({
+        Bucket,
+        Region,
+        Key,
       });
+      return response.Body.toString();
+    } catch (error) {
+      console.error("获取COS内容失败:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const currentTime = Date.now();
+    const lastVisitTime = Number(localStorage.getItem("lastVisitTime"));
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        let articleRes;
+
+        if (lastVisitTime && currentTime - lastVisitTime < 60000) {
+          const [article] = await Promise.all([
+            axios.get<{ code: number; data: ArticleData }>(
+              `${config.server.axios.protocol}://${config.server.axios.host}/api/article/get/id`,
+              {
+                params: { articleId },
+                signal: controller.signal,
+              },
+            ),
+          ]);
+          articleRes = article;
+        } else {
+          const [article] = await Promise.all([
+            axios.get<{ code: number; data: ArticleData }>(
+              `${config.server.axios.protocol}://${config.server.axios.host}/api/article/get/id`,
+              {
+                params: { articleId },
+                signal: controller.signal,
+              },
+            ),
+            axios.put(
+              `${config.server.axios.protocol}://${config.server.axios.host}/api/article/visitorAdd`,
+              null,
+              {
+                params: { articleId },
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              },
+            ),
+          ]);
+          articleRes = article;
+        }
+
+        if (articleRes.data.code !== 200) {
+          throw new Error("接口返回异常状态码:" + articleRes.data.code);
+        }
+
+        const { articleTitle, articleDate, articleVisitorCount } =
+          articleRes.data.data;
+        const Param = {
+          Bucket: articleRes.data.data.articleBucket,
+          Region: articleRes.data.data.articleRegion,
+          Key: articleRes.data.data.articleKey,
+          ServerSideEncryption: "AES256",
+        };
+        const content = await fetchCOSContent(Param);
+
+        setBlogMeta({
+          title: articleTitle,
+          time: formatDate(articleDate),
+          visitorCount: articleVisitorCount,
+        });
+        setBlogContent(content);
+      } catch (err) {
+        if (!axios.isCancel(err)) {
+          console.error("加载失败:", err);
+          setError(true);
+          setBlogContent("无法加载文章内容");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+    return () => controller.abort();
   }, [articleId]);
 
   return (
     <>
       <div className={`px-8 pt-12 ${error || loading ? "hidden" : ""}`}>
         <div>
-          <div className="markdown-title">{blogTitle}</div>
+          <div className="markdown-title">{blogMeta.title}</div>
         </div>
         <div className="absolute left-0 right-0 m-auto h-fit w-fit">
           <div className="flex items-center gap-2 text-sm">
@@ -111,7 +169,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   />
                 </svg>
               </span>
-              <span className="pt-1">{blogTime}</span>
+              <span className="pt-1">{blogMeta.time}</span>
             </div>
             <div className="flex items-center space-x-1">
               <span className="pt-[0.125rem]">
@@ -135,7 +193,7 @@ const Markdown: React.FC<{ articleId: number }> = ({ articleId }) => {
                   />
                 </svg>
               </span>
-              <span className="pt-1">{blogVisitorCount}</span>
+              <span className="pt-1">{blogMeta.visitorCount}</span>
             </div>
           </div>
         </div>

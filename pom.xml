@@ -20,7 +20,7 @@
     <!-- 项目基本信息 -->
     <groupId>com.mochenwu</groupId> <!-- 项目组 ID -->
     <artifactId>MochenWu</artifactId> <!-- 项目 ID -->
-    <version>1.0.1</version> <!-- 项目版本 -->
+    <version>1.1.0</version> <!-- 项目版本 -->
     <packaging>pom</packaging> <!-- 打包类型为 POM -->
     <url/> <!-- 项目主页 URL -->
 
@@ -105,6 +105,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.2</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

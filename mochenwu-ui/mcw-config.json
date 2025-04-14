@@ -1,6 +1,6 @@
 {
   "server": {
-    "axios": { "protocol": "http", "host": "localhost", "port": "8080" }
+    "axios": { "protocol": "https", "host": "api.mochenwu.com" }
   },
   "RouteMap": [
     {

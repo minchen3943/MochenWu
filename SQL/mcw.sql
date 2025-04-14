@@ -20,7 +20,9 @@ CREATE TABLE `mcw_article`
 (
     article_id            INT AUTO_INCREMENT PRIMARY KEY COMMENT '博客id',
     article_title         VARCHAR(80)  NOT NULL COMMENT '博客标题',
-    article_url           VARCHAR(200) NOT NULL COMMENT '文章路径',
+    article_bucket           VARCHAR(200) NOT NULL COMMENT '文章存储桶',
+    article_region           VARCHAR(200) NOT NULL COMMENT '文章存储桶所在地域',
+    article_key           VARCHAR(200) NOT NULL COMMENT '文章Key',
     article_name          VARCHAR(200) NOT NULL COMMENT '文章名字',
     article_date          DATETIME COMMENT '文章上传时间',
     article_visitor_count INT          NOT NULL COMMENT '文章阅读人数',

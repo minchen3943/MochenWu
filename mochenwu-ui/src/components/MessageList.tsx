@@ -41,7 +41,7 @@ export default function MessageList() {
     async function getCommentsByPage(pageNumber: number) {
       const commentData = await axios
         .get(
-          `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`,
+          `${config.server.axios.protocol}://${config.server.axios.host}/api/comment/get/page?page=${pageNumber}&pageSize=${pageSize}`,
         )
         .catch((error) => {
           console.error("获取评论失败：", error);
@@ -75,7 +75,7 @@ export default function MessageList() {
   useEffect(() => {
     async function getCommentPageNumber(pageSize: number) {
       const maxPageNumberData = await axios.get(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/get/page/number?pageSize=${pageSize}`,
+        `${config.server.axios.protocol}://${config.server.axios.host}/api/comment/get/page/number?pageSize=${pageSize}`,
       );
       const maxPageNumbers = await maxPageNumberData.data;
       setMaxPageNumber(parseInt(maxPageNumbers.data));

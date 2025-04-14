@@ -7,6 +7,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 全局跨域配置类。
@@ -31,11 +32,12 @@ public class GlobalCorsConfig {
         // 1. 添加 CORS 配置信息
         CorsConfiguration config = new CorsConfiguration();
         // 设置允许访问的前端域名列表
-        config.setAllowedOrigins(Arrays.asList(
-                "http://localhost:3000",
-                "http://127.0.0.1:3000",
-                "http://192.168.5.2:3000",
-                "http://192.168.5.3:3000"
+        config.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost",
+                "http://192.168.5.2",
+                "http://mochenwu.com",
+                "https://mochenwu.com",
+                "*.mochenwu.com"
         ));
         // 是否允许携带凭证（如 Cookie）
         config.setAllowCredentials(true);

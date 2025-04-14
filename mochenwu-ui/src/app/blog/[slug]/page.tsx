@@ -12,11 +12,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const blogData = await axios
     .get(
-      `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/article/get/id?articleId=${slug}`,
+      `${config.server.axios.protocol}://${config.server.axios.host}/api/article/get/id?articleId=${slug}`,
     )
     .then((res) => res.data.data);
   return {
     title: blogData.articleTitle,
+    description: `沫尘屋的博客-${blogData.articleTitle}`,
+    openGraph: {
+      description: `沫尘屋的博客-${blogData.articleTitle}`,
+    },
+    twitter: {
+      description: `沫尘屋的博客-${blogData.articleTitle}`,
+    },
   };
 }
 

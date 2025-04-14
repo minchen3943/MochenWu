@@ -53,7 +53,7 @@ export default function MessageForm() {
     const payload = { ...data, commentUserIp: ip };
     try {
       await axios.post(
-        `${config.server.axios.protocol}://${config.server.axios.host}:${config.server.axios.port}/api/comment/add`,
+        `${config.server.axios.protocol}://${config.server.axios.host}/api/comment/add`,
         payload,
       );
       setSuccessMessage(true);

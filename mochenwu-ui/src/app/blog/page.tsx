@@ -3,6 +3,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "博客列表",
+  description: "沫尘屋的博客列表~",
+  openGraph: {
+    description: "沫尘屋的博客列表~",
+  },
+  twitter: {
+    description: "沫尘屋的博客列表~",
+  },
 };
 
 export default async function page() {

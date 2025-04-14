@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 const Font = localFont({
-  src: "../public/font.woff",
+  src: "../../public/font.woff2",
 });
 
 export const metadata: Metadata = {
@@ -16,7 +16,38 @@ export const metadata: Metadata = {
     template: "%s - 沫尘屋",
     default: "沫尘屋",
   },
-  robots: "noindex, nofollow",
+  applicationName: "沫尘屋",
+  description: "沫鸯和瞑尘一起制作的个人网站",
+  keywords: [
+    "沫尘屋",
+    "博客",
+    "生活",
+    "学习",
+    "个人网站",
+    "Next.js",
+    "React",
+    "JavaScript",
+  ],
+  publisher: "沫尘屋",
+  authors: [
+    { name: "沫鸯", url: "https://mochenwu.com" },
+    { name: "瞑尘", url: "https://mochenwu.com" },
+  ],
+  openGraph: {
+    title: "沫尘屋",
+    description: "沫鸯和瞑尘一起制作的个人网站",
+    url: "https://mochenwu.com",
+    siteName: "沫尘屋",
+    locale: "zh_CN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@minchen3943",
+    title: "沫尘屋",
+    description: "沫鸯和瞑尘一起制作的个人网站",
+  },
+  robots: "index, follow",
 };
 
 export const viewport: Viewport = {

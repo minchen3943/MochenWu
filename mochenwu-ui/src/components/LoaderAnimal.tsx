@@ -2,9 +2,14 @@
 import React from "react";
 import styled from "styled-components";
 
+/**
+ * 动物加载动画组件
+ * @returns {JSX.Element} 返回加载动画的 JSX 元素
+ */
 const Loader = () => {
   return (
     <StyledWrapper>
+      {/* 动物加载动画结构 */}
       <div
         aria-label="Orange and tan hamster running in a metal wheel"
         role="img"
@@ -13,6 +18,7 @@ const Loader = () => {
         <div className="wheel" />
         <div className="hamster">
           <div className="hamster__body">
+            {/* 动物身体结构 */}
             <div className="hamster__head">
               <div className="hamster__ear" />
               <div className="hamster__eye" />
@@ -31,6 +37,9 @@ const Loader = () => {
   );
 };
 
+/**
+ * 样式定义
+ */
 const StyledWrapper = styled.div`
   .wheel-and-hamster {
     --dur: 1s;

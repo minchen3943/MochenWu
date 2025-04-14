@@ -32,7 +32,7 @@ const eslintConfig = [
       "react-hooks/rules-of-hooks": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "react-hooks/exhaustive-deps": "warn",
-      "no-console": "warn",
+      "no-console": "off",
       eqeqeq: "error",
     },
   },

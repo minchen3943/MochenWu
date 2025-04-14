@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!-- 项目模型版本 -->
     <modelVersion>4.0.0</modelVersion>
@@ -9,13 +9,13 @@
     <parent>
         <groupId>com.mochenwu</groupId> <!-- 父项目的 groupId -->
         <artifactId>MochenWu</artifactId> <!-- 父项目的 artifactId -->
-        <version>1.0.1</version> <!-- 父项目的版本 -->
+        <version>1.1.0</version> <!-- 父项目的版本 -->
     </parent>
 
     <!-- 当前项目的 artifactId -->
     <artifactId>mcw_article</artifactId>
     <!-- 当前项目的版本 -->
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -28,18 +28,21 @@
     </properties>
 
     <dependencies>
-        <!-- 阿里云 OSS 相关依赖 -->
+        <!-- 腾讯云 COS 相关依赖 -->
         <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <version>3.18.0</version>
-            <exclusions>
-                <!-- 排除不需要的依赖 -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.245</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos-sts_api</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java-sts</artifactId>
+            <version>3.1.1239</version>
         </dependency>
 
         <!-- JAXB API 依赖 -->
@@ -47,7 +50,6 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
-            <!-- 参考：https://javaee.github.io/jaxb-v2/ -->
         </dependency>
 
         <!-- Java Activation Framework 依赖 -->
@@ -55,7 +57,6 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
-            <!-- 参考：https://javaee.github.io/javapackages/ -->
         </dependency>
 
         <!-- JAXB 运行时依赖 -->
@@ -63,14 +64,12 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.3</version>
-            <!-- 参考：https://javaee.github.io/jaxb-v2/ -->
         </dependency>
 
         <!-- Spring Boot 验证 starter 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-            <!-- 参考：https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#starter-validation -->
         </dependency>
 
         <!-- MyBatis 分页插件依赖 -->
@@ -78,7 +77,6 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>2.1.0</version>
-            <!-- 参考：https://github.com/pagehelper/Mybatis-PageHelper -->
         </dependency>
     </dependencies>
 </project>

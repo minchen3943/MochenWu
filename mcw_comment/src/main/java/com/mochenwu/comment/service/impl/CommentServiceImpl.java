@@ -82,13 +82,13 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
             List<McwComment> comments = commentMapper.getAllVisibleComment();
             // 处理空结果集
             if (comments.isEmpty()) {
-                logger.error("分页查询评论数据为空 {page:{}  pageSize:{}}", page, pageSize);
+                logger.warn("分页查询评论数据为空 {page:{}  pageSize:{}}", page, pageSize);
             } else {
                 logger.info("分页查询成功 {page:{}  pageSize:{}}", page, pageSize);
             }
             return comments;
         } catch (Exception e) {
-            logger.error("分页查询评论时发生错误：{}", e.getMessage());
+            logger.warn("分页查询评论时发生错误：{}", e.getMessage());
             throw new RuntimeException("分页查询评论时发生错误：", e);
         }
     }
@@ -103,7 +103,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
     public McwComment getCommentById(int commentId) {
         McwComment comment = commentMapper.getCommentById(commentId);
         if (comment == null) {
-            logger.error("获取评论为空, commentId:{}", commentId);
+            logger.warn("获取评论为空, commentId:{}", commentId);
         } else {
             logger.info("查询评论成功 commentId:{}", commentId);
         }
@@ -122,7 +122,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, McwComment> i
         int status = commentMapper.updateCommentById(mcwComment);
         // 处理更新结果
         if (status == 0) {
-            logger.error("更新评论失败, commentId:{}", id);
+            logger.warn("更新评论失败, commentId:{}", id);
         } else {
             logger.info("更新评论成功 {commentId:{}, Updates:{}}", id, status);
         }

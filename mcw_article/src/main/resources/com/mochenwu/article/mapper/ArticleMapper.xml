@@ -5,9 +5,11 @@
 
     <insert id="addArticle" useGeneratedKeys="true" keyProperty="articleId"
             parameterType="com.mochenwu.article.model.McwArticle">
-        INSERT INTO mcw_article (article_title, article_url, article_name, article_date, article_visitor_count,
-                                  article_status)
-        VALUES (#{articleTitle}, #{articleUrl},#{articleName}, #{articleDate}, #{articleVisitorCount},
+        INSERT INTO mcw_article (article_title, article_key, article_region, article_bucket, article_name, article_date,
+                                 article_visitor_count,
+                                 article_status)
+        VALUES (#{articleTitle}, #{articleKey}, #{articleRegion}, #{articleBucket}, #{articleName}, #{articleDate},
+                #{articleVisitorCount},
                 #{articleStatus})
     </insert>
     <update id="updateArticle">

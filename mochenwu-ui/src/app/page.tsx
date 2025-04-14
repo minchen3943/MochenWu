@@ -3,7 +3,9 @@ import StatusBar from "@/components/StatusBar";
 import "@/styles/homePage.scss";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: { absolute: "沫尘屋" } };
+export const metadata: Metadata = {
+  title: { absolute: "沫尘屋" },
+};
 
 export default async function page() {
   const welcome = ["W", "e", "l", "c", "o", "m", "e", ","];

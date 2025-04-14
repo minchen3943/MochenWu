@@ -24,7 +24,7 @@ public interface ArticleService extends IService<McwArticle> {
      *
      * @param mcwArticle 文章对象
      */
-    void addArticle(McwArticle mcwArticle);
+    boolean addArticle(McwArticle mcwArticle);
 
     /**
      * 功能描述：更新文章

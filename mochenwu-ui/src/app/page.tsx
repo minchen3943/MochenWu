@@ -2,6 +2,7 @@ import FadeContent from "@/components/FadeContent";
 import StatusBar from "@/components/StatusBar";
 import "@/styles/homePage.scss";
 import type { Metadata } from "next";
+import "@/styles/Loader.css";
 
 export const metadata: Metadata = {
   title: { absolute: "沫尘屋" },
@@ -195,6 +196,7 @@ export default async function page() {
         <FadeContent delay={200} threshold={1} className="lg:hidden">
           <StatusBar />
         </FadeContent>
+        <div id="OvO"></div>
       </div>
     </>
   );

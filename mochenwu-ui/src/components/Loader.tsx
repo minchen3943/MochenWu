@@ -1,5 +1,5 @@
 import React from "react";
-import "@/styles/Loader.css"; // 引入 CSS 文件
+import "@/styles/Loader.css";
 
 const Loader = () => {
   return (

@@ -1,5 +1,6 @@
 package com.mochenwu.article.util;
 
+import com.mochenwu.article.controller.TencentCOSController;
 import com.mochenwu.article.model.McwArticle;
 import com.mochenwu.article.model.TencentCOSModel;
 import com.qcloud.cos.COSClient;
@@ -20,6 +21,13 @@ import com.tencent.cloud.CosStsClient;
 import com.tencent.cloud.Policy;
 import com.tencent.cloud.Response;
 import com.tencent.cloud.Statement;
+import com.tencentcloudapi.common.Credential;
+import com.tencentcloudapi.common.exception.TencentCloudSDKException;
+import com.tencentcloudapi.common.profile.ClientProfile;
+import com.tencentcloudapi.common.profile.HttpProfile;
+import com.tencentcloudapi.sts.v20180813.StsClient;
+import com.tencentcloudapi.sts.v20180813.models.GetFederationTokenRequest;
+import com.tencentcloudapi.sts.v20180813.models.GetFederationTokenResponse;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -193,7 +201,6 @@ public class TencentCOSUtil {
      * <p>
      * 该方法将上传 MultipartFile 文件至 COS 存储，
      * 生成随机文件名，并构造存储对象 Key，上传成功后返回包含文件元数据和访问 URL 的模型类 TencentCOSModel。
-     * 上传时采用分块上传方式，适用于大文件传输。
      * </p>
      *
      * @param file 上传的 MultipartFile 文件对象
@@ -260,5 +267,96 @@ public class TencentCOSUtil {
             cosClient.shutdown();
         }
         return false;
+    }
+
+    /**
+    * 从腾讯云 COS 获取临时秘钥
+    * <p>
+    * 直接从腾讯云COS获取临时秘钥,生效时长180s
+    * </p>
+     * @return 一个完整的token {@link GetFederationTokenResponse} 为空则有错误，懒得写错误响应了
+    */
+    public GetFederationTokenResponse getToken() {
+        try {
+            // 获取STS客户端实例
+            StsClient client = getStsClient();
+            // 构造获取临时token的请求对象
+            GetFederationTokenRequest req = getGetFederationTokenRequest();
+            // 调用STS接口获取临时token信息
+            GetFederationTokenResponse response = client.GetFederationToken(req);
+            // 输出日志，表明token获取成功
+            logger.info("成功获取临时token");
+            return response;
+        } catch (TencentCloudSDKException e) {
+            // 捕获异常并记录详细的错误日志
+            logger.error("获取临时token失败，TencentCloudSDKException：", e);
+        }
+        // 出现异常时返回null，调用方需做非null判断
+        return null;
+    }
+
+
+    /**
+     * 构造获取临时Token请求对象
+     * <p>
+     * 方法描述：
+     * 1. 实例化 {@link GetFederationTokenRequest} 对象；<br>
+     * 2. 设置权限角色名称（例如"readOnly"）；<br>
+     * 3. 设置授权策略，策略内容为JSON格式，指定允许调用COS的GetObject操作，且资源范围限定；<br>
+     * 4. 设置token生效时长（单位秒，此处设为180秒）；<br>
+     * 5. 返回构造好的请求对象。<br>
+     * </p>
+     *
+     * @return 一个已配置好的 {@link GetFederationTokenRequest} 请求对象，不为空
+     * @author 瞑尘
+     * @date 2025-04-13
+     */
+    private @NotNull GetFederationTokenRequest getGetFederationTokenRequest() {
+        // 创建获取临时token的请求对象
+        GetFederationTokenRequest req = new GetFederationTokenRequest();
+
+        // 设置请求名称，标识当前token对应的角色名称，此处为 "readOnly"
+        req.setName("readOnly");
+
+        /* 设置权限策略
+         * 策略为JSON字符串，定义允许调用COS的GetObject操作，
+         * 限定资源为指定Bucket下article目录内所有文件
+         */
+        req.setPolicy("{\"version\":\"2.0\",\"statement\":[{\"effect\":\"allow\",\"action\":[\"name/cos:GetObject\"],\"resource\":\"qcs::cos:ap-guangzhou:uid/1354220332:mochenwu-1354220332/article/*\"}]}");
+
+        // 设置token的有效时间，单位为秒，此处为180秒
+        req.setDurationSeconds(180L);
+
+        return req;
+    }
+
+    /**
+     * 获取腾讯云STS客户端实例
+     * <p>
+     * 方法描述：
+     * 1. 构造认证信息（AKID、密钥）；<br>
+     * 2. 创建HttpProfile，配置访问的endpoint；<br>
+     * 3. 构造ClientProfile，并关联HttpProfile；<br>
+     * 4. 根据认证信息和配置返回一个StsClient实例，区域为"ap-guangzhou"。<br>
+     * </p>
+     *
+     * @return 一个非空的 {@link StsClient} 实例，用于调用STS接口
+     * @author 瞑尘
+     * @date 2025-04-13
+     */
+    private @NotNull StsClient getStsClient() {
+        // 创建认证信息
+        Credential cred = new Credential(secretId, secretKey);
+
+        // 实例化HttpProfile，可对请求超时时间及访问endpoint做配置
+        HttpProfile httpProfile = new HttpProfile();
+        httpProfile.setEndpoint("sts.tencentcloudapi.com");
+
+        // 创建客户端配置，绑定HttpProfile
+        ClientProfile clientProfile = new ClientProfile();
+        clientProfile.setHttpProfile(httpProfile);
+
+        // 返回STS客户端实例，指定区域为 "ap-guangzhou"
+        return new StsClient(cred, region, clientProfile);
     }
 }
